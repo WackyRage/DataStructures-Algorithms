@@ -94,13 +94,14 @@ public class GUI {
 
         //create a table with new model
         JTable dataTable = new JTable(model);
-        dataTable.setBounds(0, 325, 600, 500);
+//        dataTable.setBounds(0, 325, 600, 500);
         dataTable.setDefaultEditor(Object.class, null);
         mainPanel.add(dataTable);
 
         // Add the table to a scroll pane
-        /*
+
         JScrollPane scrollPane = new JScrollPane(dataTable);
-        mainPanel.add(scrollPane, BorderLayout.CENTER);*/
+        scrollPane.setBounds(0, 325, 600, 500); // Set bounds for the scroll pane
+        mainPanel.add(scrollPane);
     }
 }

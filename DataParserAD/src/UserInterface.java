@@ -17,19 +17,15 @@ public class UserInterface {
         mainPanel.add(leftPanel);
 
         // Create the search panel with components using BoxLayout
-        JPanel searchPanel = new JPanel();
-        searchPanel.setLayout(new BoxLayout(searchPanel, BoxLayout.Y_AXIS)); // Use BoxLayout for vertical stacking
+        JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Use FlowLayout with left alignment
         leftPanel.add(searchPanel);
 
         JTextField inputField = new JTextField();
-        inputField.setPreferredSize(new Dimension(Integer.MAX_VALUE, 30)); // Set preferred height
-        inputField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30)); // Set maximum height
+        inputField.setPreferredSize(new Dimension(150, 30)); // Set preferred size
         searchPanel.add(inputField);
 
         JButton inputButton = new JButton("Press");
-        inputButton.setAlignmentX(Component.LEFT_ALIGNMENT); // Align button to the left
-        inputButton.setPreferredSize(new Dimension(Integer.MAX_VALUE, 30)); // Set preferred height
-        inputButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30)); // Set maximum width
+        inputButton.setPreferredSize(new Dimension(80, 30)); // Set preferred size
         searchPanel.add(inputButton);
 
         JPanel buttonPanel = new JPanel(new GridLayout(3, 1));

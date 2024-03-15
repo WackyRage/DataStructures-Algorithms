@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+
 public class UserInterface {
     public UserInterface() {
         // Create the main frame
@@ -21,10 +23,20 @@ public class UserInterface {
         searchPanel.setLayout(new BoxLayout(searchPanel, BoxLayout.Y_AXIS)); // Use BoxLayout for vertical stacking
         leftPanel.add(searchPanel);
 
-        JTextField inputField = new JTextField();
-        inputField.setPreferredSize(new Dimension(Integer.MAX_VALUE, 30)); // Set preferred height
-        inputField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30)); // Set maximum height
-        searchPanel.add(inputField);
+        JButton fileButton = new JButton("Select File");
+        fileButton.setPreferredSize(new Dimension(Integer.MAX_VALUE, 30));
+        fileButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                int returnVal = fileChooser.showOpenDialog(null);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fileChooser.getSelectedFile();
+                    // Do something with the selected file
+                    System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+                }
+            }
+        });
+        searchPanel.add(fileButton);
 
         JButton inputButton = new JButton("Press");
         inputButton.setAlignmentX(Component.LEFT_ALIGNMENT); // Align button to the left

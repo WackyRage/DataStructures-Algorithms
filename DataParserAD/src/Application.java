@@ -103,6 +103,11 @@ public class Application {
         System.out.println("The games have been sorted using Quicksort!");
     }
 
+    public void bubbleSortData(){
+        BubbleSort.bubbleSort(Games);
+        System.out.println("The games have been sorted using Bubblesort!");
+    }
+
     public ArrayList<Game> getGames() {
         return Games;
     }

@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class GUI {
     private SimpleDateFormat releaseDateFormat;
@@ -117,6 +116,14 @@ public class GUI {
         refreshData.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                refreshData(application.getGames());
+            }
+        });
+
+        buttonBubbleSort.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                application.bubbleSortData();
                 refreshData(application.getGames());
             }
         });

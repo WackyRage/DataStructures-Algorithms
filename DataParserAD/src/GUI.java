@@ -34,7 +34,7 @@ public class GUI {
     public GUI(ArrayList<Game> Games) {
         //create MainPage
         mainPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainPage.setSize(600, 800);
+        mainPage.setSize(800, 800);
         mainPage.setTitle("DataParserAD");
         mainPage.setVisible(true);
         mainPage.setResizable(false);
@@ -101,7 +101,7 @@ public class GUI {
         // Add the table to a scroll pane
 
         JScrollPane scrollPane = new JScrollPane(dataTable);
-        scrollPane.setBounds(0, 325, 600, 500); // Set bounds for the scroll pane
+        scrollPane.setBounds(0, 325, 800, 500); // Set bounds for the scroll pane
         mainPanel.add(scrollPane);
     }
 }

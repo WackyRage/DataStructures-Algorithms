@@ -13,7 +13,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Application {
     private SimpleDateFormat releaseDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -100,5 +99,11 @@ public class Application {
         {
             throw new RuntimeException(e);
         }
+    }
+
+    private void quickSortData(GUI gui){
+        QuickSort.quickSort(Games, 0, (Games.size() - 1));
+        System.out.println("The games have been sorted using Quicksort!");
+        gui.refreshData(Games);
     }
 }

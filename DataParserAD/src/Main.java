@@ -13,10 +13,18 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class Main {
 
     public static void main(String[] args) throws ParseException {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new UserInterface();
+            }
+        });
 
         System.out.println("here comes the date:");
         Application Application = new Application();

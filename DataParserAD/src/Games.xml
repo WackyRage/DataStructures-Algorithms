@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<class>
+    <game name="Helldivers II">
+        <genre value="CO-OP Shooter"/>
+        <pegi value="18"/>
+        <price value="40"/>
+        <releaseDate value="2024-02-08"/>
+    </game>
+    <game name="Fallout 76">
+        <genre value="RPG"/>
+        <pegi value="18"/>
+        <price value="40"/>
+        <releaseDate value="2020-04-14"/>
+    </game>
+    <game name="Destiny 2">
+        <genre value="Action MMO"/>
+        <pegi value="16"/>
+        <price value="50"/>
+        <releaseDate value="2019-10-01"/>
+    </game>
+    <game name="Stardew Valley">
+        <genre value="Farming Sim"/>
+        <pegi value="12"/>
+        <price value="14"/>
+        <releaseDate value="2016-02-26"/>
+    </game>
+    <game name="Total War: Warhammer III">
+        <genre value="Grand Strategy"/>
+        <pegi value="16"/>
+        <price value="60"/>
+        <releaseDate value="2022-02-17"/>
+    </game>
+</class>

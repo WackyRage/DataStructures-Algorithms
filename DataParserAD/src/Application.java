@@ -31,8 +31,7 @@ public class Application {
         return releaseDateFormat.format(date);
     }
 
-    private void xmlToArrayList(String fileLocation)
-    {
+    public void xmlToArrayList(String fileLocation) {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try{
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -119,5 +118,9 @@ public class Application {
 
     public SimpleDateFormat getReleaseDateFormat() {
         return releaseDateFormat;
+    }
+
+    public void setGames(ArrayList<Game> games) {
+        Games = games;
     }
 }

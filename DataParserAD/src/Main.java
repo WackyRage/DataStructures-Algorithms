@@ -7,6 +7,6 @@ public class Main extends Application{
         Application Application = new Application();
 
         //frontend start
-        GUI gui = new GUI(Application.getGames(), Application);
+        GUI gui = new GUI(Application);
     }
 }

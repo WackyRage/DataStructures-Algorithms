@@ -2,21 +2,21 @@ import javax.sql.RowSet;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class GUI {
-    private SimpleDateFormat releaseDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    private ArrayList<Game> Games;
+    private SimpleDateFormat releaseDateFormat;
 
     //create Pages
     JFrame mainPage = new JFrame();
 
     //create Panels
     JPanel mainPanel = new JPanel();
-    JPanel dataPanel = new JPanel();
 
     //create Buttons
     JButton buttonQuickSort = new JButton("Quicksort");
@@ -31,7 +31,8 @@ public class GUI {
     //Create JTable
     DefaultTableModel model = new DefaultTableModel();
 
-    public GUI(ArrayList<Game> Games, Application application) {
+    public GUI(Application application) {
+        releaseDateFormat = application.getReleaseDateFormat();
         //create MainPage
         mainPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainPage.setSize(800, 800);
@@ -40,14 +41,14 @@ public class GUI {
         mainPage.setResizable(false);
 
         //add mainPanel to mainPage
-        this.Games = Games;
         createMainPanel();
 
-        createTableModel();
+        createTableModel(application);
+
+        addOnClickButtons(application);
     }
 
-    public void createMainPanel()
-    {
+    public void createMainPanel() {
         //set panel attributes
         mainPanel.setLayout(null);
         mainPage.add(mainPanel);
@@ -76,12 +77,11 @@ public class GUI {
         }
     }
 
-    private String parseDateToString(Date date)
-    {
+    private String parseDateToString(Date date) {
         return releaseDateFormat.format(date);
     }
 
-    private void createTableModel(){
+    private void createTableModel(Application application){
         //add columns to table model
         model.addColumn("Name");
         model.addColumn("Genre");
@@ -90,7 +90,7 @@ public class GUI {
         model.addColumn("Release Date");
 
         //add rows to the table model
-        refreshData(Games);
+        refreshData(application.getGames());
 
         //create a table with new model
         JTable dataTable = new JTable(model);
@@ -103,5 +103,22 @@ public class GUI {
         JScrollPane scrollPane = new JScrollPane(dataTable);
         scrollPane.setBounds(0, 325, 800, 500); // Set bounds for the scroll pane
         mainPanel.add(scrollPane);
+    }
+
+    private void addOnClickButtons(Application application){
+        buttonQuickSort.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                application.quickSortData();
+                refreshData(application.getGames());
+            }
+        });
+
+        refreshData.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                refreshData(application.getGames());
+            }
+        });
     }
 }

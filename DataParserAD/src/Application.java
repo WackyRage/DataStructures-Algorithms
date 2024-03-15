@@ -98,13 +98,16 @@ public class Application {
         }
     }
 
-    private void quickSortData(GUI gui){
+    public void quickSortData(){
         QuickSort.quickSort(Games, 0, (Games.size() - 1));
         System.out.println("The games have been sorted using Quicksort!");
-        gui.refreshData(Games);
     }
 
     public ArrayList<Game> getGames() {
         return Games;
+    }
+
+    public SimpleDateFormat getReleaseDateFormat() {
+        return releaseDateFormat;
     }
 }

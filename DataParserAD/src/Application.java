@@ -108,6 +108,11 @@ public class Application {
         System.out.println("The games have been sorted using Bubblesort!");
     }
 
+    public void mergeSortData(){
+        MergeSort.mergeSort(Games, 0, (Games.size() - 1));
+        System.out.println("The games have been sorted using Mergesort!");
+    }
+
     public ArrayList<Game> getGames() {
         return Games;
     }

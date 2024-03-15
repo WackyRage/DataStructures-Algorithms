@@ -127,5 +127,13 @@ public class GUI {
                 refreshData(application.getGames());
             }
         });
+
+        buttonMergeSort.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                application.mergeSortData();
+                refreshData(application.getGames());
+            }
+        });
     }
 }

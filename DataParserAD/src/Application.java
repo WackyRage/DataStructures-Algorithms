@@ -24,9 +24,6 @@ public class Application {
         {
             System.out.println(objGame.getName() + "\n" + objGame.getGenre() + "\n" + objGame.getPEGI() + "\n" + objGame.getPrice() + "\n" + objGame.getReleaseDate() + "\n");
         }
-
-        //frontend start
-        GUI gui = new GUI(Games);
     }
 
     private String parseDateToString(Date date)
@@ -105,5 +102,9 @@ public class Application {
         QuickSort.quickSort(Games, 0, (Games.size() - 1));
         System.out.println("The games have been sorted using Quicksort!");
         gui.refreshData(Games);
+    }
+
+    public ArrayList<Game> getGames() {
+        return Games;
     }
 }

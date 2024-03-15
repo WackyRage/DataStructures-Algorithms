@@ -31,7 +31,7 @@ public class GUI {
     //Create JTable
     DefaultTableModel model = new DefaultTableModel();
 
-    public GUI(ArrayList<Game> Games) {
+    public GUI(ArrayList<Game> Games, Application application) {
         //create MainPage
         mainPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainPage.setSize(800, 800);

@@ -5,5 +5,8 @@ public class Main extends Application{
         //test code
         System.out.println("here comes the date:");
         Application Application = new Application();
+
+        //frontend start
+        GUI gui = new GUI(Application.getGames(), Application);
     }
 }

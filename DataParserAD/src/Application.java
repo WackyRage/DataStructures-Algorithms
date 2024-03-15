@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Application {
     private SimpleDateFormat releaseDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -24,6 +25,9 @@ public class Application {
         {
             System.out.println(objGame.getName() + "\n" + objGame.getGenre() + "\n" + objGame.getPEGI() + "\n" + objGame.getPrice() + "\n" + objGame.getReleaseDate() + "\n");
         }
+
+        //frontend start
+        GUI gui = new GUI(Games);
     }
 
     private String parseDateToString(Date date)

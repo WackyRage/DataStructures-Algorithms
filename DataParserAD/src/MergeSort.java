@@ -9,10 +9,10 @@ public class MergeSort{
         ArrayList<Game> M = new ArrayList<>(n2);
 
         for(int i = 0; i < n1; i++){
-            L.set(i, Games.get(p + i));
+            L.add(i, Games.get(p + i));
         }
         for(int j = 0; j < n2; j++){
-            M.set(j, Games.get(q + 1 + j));
+            M.add(j, Games.get(q + 1 + j));
         }
 
         //maintain current index of sub-arrays
@@ -45,9 +45,6 @@ public class MergeSort{
             k++;
         }
     }
-
-
-
 
     static void mergeSort(ArrayList<Game> games, int l, int r){
         if(l < r){

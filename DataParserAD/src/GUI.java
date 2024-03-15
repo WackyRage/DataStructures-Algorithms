@@ -1,5 +1,7 @@
 import javax.sql.RowSet;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,24 +9,27 @@ import java.util.List;
 
 public class GUI {
     private SimpleDateFormat releaseDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private ArrayList<Game> Games;
 
     //create Pages
     JFrame mainPage = new JFrame();
 
     //create Panels
     JPanel mainPanel = new JPanel();
+    JPanel dataPanel = new JPanel();
 
     //create Buttons
     JButton buttonQuickSort = new JButton("Quicksort");
     JButton buttonHeapSort = new JButton("HeapSort");
     JButton buttonMergeSort = new JButton("MergeSort");
     JButton buttonBubbleSort = new JButton("BubbleSort");
+    JButton refreshData = new JButton("Refresh Data");
 
     //Create Labels
-    JLabel titleMainPage = new JLabel("Main Page");
+    JLabel titleMainPage = new JLabel("Data Parser Algoritme en Datastructuren");
 
-    //Create splitPane
-    JSplitPane splitPaneData = new JSplitPane();
+    //Create JTable
+    DefaultTableModel model = new DefaultTableModel();
 
     public GUI(ArrayList<Game> Games) {
         //create MainPage
@@ -35,20 +40,25 @@ public class GUI {
         mainPage.setResizable(false);
 
         //add mainPanel to mainPage
-        createMainPanel(Games);
+        this.Games = Games;
+        createMainPanel();
+
+        createTableModel();
     }
 
-    public void createMainPanel(ArrayList<Game> Games)
+    public void createMainPanel()
     {
         //set panel attributes
         mainPanel.setLayout(null);
         mainPage.add(mainPanel);
 
         //add labels and set their locations
-        titleMainPage.setBounds(50, 25, 700, 50);
+        titleMainPage.setBounds(50, 25, 200, 50);
         mainPanel.add(titleMainPage);
 
         //add buttons and set their locations
+        refreshData.setBounds(350, 25, 200, 50);
+        mainPanel.add(refreshData);
         buttonQuickSort.setBounds(50, 125, 200, 50);
         mainPanel.add(buttonQuickSort);
         buttonHeapSort.setBounds(350, 125, 200, 50);
@@ -57,24 +67,40 @@ public class GUI {
         mainPanel.add(buttonMergeSort);
         buttonBubbleSort.setBounds(350, 225, 200, 50);
         mainPanel.add(buttonBubbleSort);
-
-        //add splitPane
-        splitPaneData.setBounds(0, 425, 600, 500);
-        mainPanel.add(splitPaneData);
-        refreshData(Games);
     }
 
     public void refreshData(ArrayList<Game> Games){
-        JPanel dataPanel = new JPanel();
+        model.setRowCount(0);
         for(Game game: Games){
-            JLabel label = new JLabel("Name: " + game.getName() + ", Genre: " + game.getGenre() + ", PEGI: " + game.getPEGI() + ", Price: " + game.getPrice() + ", Release date: " + parseDateToString(game.getReleaseDate()));
-            dataPanel.add(label);
+            model.addRow(new Object[]{game.getName(), game.getGenre(), game.getPEGI(), game.getPrice(), parseDateToString(game.getReleaseDate())});
         }
-        splitPaneData.setLeftComponent(new JScrollPane(dataPanel));
     }
 
     private String parseDateToString(Date date)
     {
         return releaseDateFormat.format(date);
+    }
+
+    private void createTableModel(){
+        //add columns to table model
+        model.addColumn("Name");
+        model.addColumn("Genre");
+        model.addColumn("PEGI");
+        model.addColumn("Price");
+        model.addColumn("Release Date");
+
+        //add rows to the table model
+        refreshData(Games);
+
+        //create a table with new model
+        JTable dataTable = new JTable(model);
+        dataTable.setBounds(0, 325, 600, 500);
+        dataTable.setDefaultEditor(Object.class, null);
+        mainPanel.add(dataTable);
+
+        // Add the table to a scroll pane
+        /*
+        JScrollPane scrollPane = new JScrollPane(dataTable);
+        mainPanel.add(scrollPane, BorderLayout.CENTER);*/
     }
 }

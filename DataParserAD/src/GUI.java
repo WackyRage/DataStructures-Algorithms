@@ -135,5 +135,13 @@ public class GUI {
                 refreshData(application.getGames());
             }
         });
+
+        buttonHeapSort.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                application.heapSortData();
+                refreshData(application.getGames());
+            }
+        });
     }
 }

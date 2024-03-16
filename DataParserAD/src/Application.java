@@ -113,6 +113,11 @@ public class Application {
         System.out.println("The games have been sorted using Mergesort!");
     }
 
+    public void heapSortData() {
+        HeapSort.heapSort(Games);
+        System.out.println("The games have been sorted using Heapsort!");
+    }
+
     public ArrayList<Game> getGames() {
         return Games;
     }
@@ -120,4 +125,6 @@ public class Application {
     public SimpleDateFormat getReleaseDateFormat() {
         return releaseDateFormat;
     }
+
+
 }

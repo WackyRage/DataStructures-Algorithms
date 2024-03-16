@@ -19,7 +19,7 @@ public class Application {
     private ArrayList<Game> Games = new ArrayList<>();
 
     public Application(){
-        xmlToArrayList("src/Games.xml");
+        xmlToArrayList();
         for (Game objGame : Games)
         {
             System.out.println(objGame.getName() + "\n" + objGame.getGenre() + "\n" + objGame.getPEGI() + "\n" + objGame.getPrice() + "\n" + objGame.getReleaseDate() + "\n");
@@ -31,13 +31,13 @@ public class Application {
         return releaseDateFormat.format(date);
     }
 
-    private void xmlToArrayList(String fileLocation)
+    private void xmlToArrayList()
     {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try{
             DocumentBuilder builder = factory.newDocumentBuilder();
 
-            Document document = (Document) builder.parse(new File(fileLocation));
+            Document document = (Document) builder.parse(new File("src/Games.xml"));
 
             document.getDocumentElement().normalize();
 

@@ -10,7 +10,6 @@ import java.util.Date;
 
 public class GUI {
     private SimpleDateFormat releaseDateFormat;
-    private Application application;
 
     //create Pages
     JFrame mainPage = new JFrame();
@@ -32,8 +31,6 @@ public class GUI {
     DefaultTableModel model = new DefaultTableModel();
 
     public GUI(Application application) {
-        this.application = application;
-
         releaseDateFormat = application.getReleaseDateFormat();
         //create MainPage
         mainPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,17 +69,7 @@ public class GUI {
         mainPanel.add(buttonBubbleSort);
     }
 
-    public void refreshData(){
-        application.xmlToArrayList("src/Games.xml");
-        ArrayList<Game> Games = application.getGames();
-        application.setGames(Games);
-        model.setRowCount(0);
-        for(Game game: Games){
-            model.addRow(new Object[]{game.getName(), game.getGenre(), game.getPEGI(), game.getPrice(), parseDateToString(game.getReleaseDate())});
-        }
-    }
-
-    public void printData(ArrayList<Game> Games){
+    public void refreshData(ArrayList<Game> Games){
         model.setRowCount(0);
         for(Game game: Games){
             model.addRow(new Object[]{game.getName(), game.getGenre(), game.getPEGI(), game.getPrice(), parseDateToString(game.getReleaseDate())});
@@ -102,7 +89,7 @@ public class GUI {
         model.addColumn("Release Date");
 
         //add rows to the table model
-        refreshData();
+        refreshData(application.getGames());
 
         //create a table with new model
         JTable dataTable = new JTable(model);
@@ -121,36 +108,31 @@ public class GUI {
         buttonQuickSort.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                refreshData();
                 application.quickSortData();
-                printData(application.getGames());
+                refreshData(application.getGames());
             }
         });
 
         refreshData.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                refreshData();
-                //action here
-                printData(application.getGames());
+                refreshData(application.getGames());
             }
         });
 
         buttonBubbleSort.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                refreshData();
                 application.bubbleSortData();
-                printData(application.getGames());
+                refreshData(application.getGames());
             }
         });
 
         buttonMergeSort.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                refreshData();
                 application.mergeSortData();
-                printData(application.getGames());
+                refreshData(application.getGames());
             }
         });
 

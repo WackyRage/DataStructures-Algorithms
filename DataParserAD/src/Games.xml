@@ -108,4 +108,34 @@
         <price value="20"/>
         <releaseDate value="2016-02-16"/>
     </game>
+    <game name="Street Fighter V">
+        <genre value="Fighting"/>
+        <pegi value="12"/>
+        <price value="20"/>
+        <releaseDate value="2016-02-16"/>
+    </game>
+    <game name="Street Fighter V">
+        <genre value="Fighting"/>
+        <pegi value="12"/>
+        <price value="20"/>
+        <releaseDate value="2016-02-16"/>
+    </game>
+    <game name="Street Fighter V">
+        <genre value="Fighting"/>
+        <pegi value="12"/>
+        <price value="20"/>
+        <releaseDate value="2016-02-16"/>
+    </game>
+    <game name="Street Fighter V">
+        <genre value="Fighting"/>
+        <pegi value="12"/>
+        <price value="20"/>
+        <releaseDate value="2016-02-16"/>
+    </game>
+    <game name="Street Fighter V">
+        <genre value="Fighting"/>
+        <pegi value="12"/>
+        <price value="20"/>
+        <releaseDate value="2016-02-16"/>
+    </game>
 </class>

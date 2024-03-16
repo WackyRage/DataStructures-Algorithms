@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class GUI {
+    private Application application;
     private SimpleDateFormat releaseDateFormat;
 
     //create Pages
@@ -25,12 +26,13 @@ public class GUI {
     JButton refreshData = new JButton("Refresh Data");
 
     //Create Labels
-    JLabel titleMainPage = new JLabel("Data Parser Algoritme en Datastructuren");
+    JLabel titleMainPage = new JLabel("Data Parser A&D");
 
     //Create JTable
     DefaultTableModel model = new DefaultTableModel();
 
     public GUI(Application application) {
+        this.application = application;
         releaseDateFormat = application.getReleaseDateFormat();
         //create MainPage
         mainPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,9 +44,9 @@ public class GUI {
         //add mainPanel to mainPage
         createMainPanel();
 
-        createTableModel(application);
+        createTableModel();
 
-        addOnClickButtons(application);
+        addOnClickButtons();
     }
 
     public void createMainPanel() {
@@ -69,7 +71,17 @@ public class GUI {
         mainPanel.add(buttonBubbleSort);
     }
 
-    public void refreshData(ArrayList<Game> Games){
+    public void printData(){
+        ArrayList<Game> Games = application.getGames();
+        model.setRowCount(0);
+        for(Game game: Games){
+            model.addRow(new Object[]{game.getName(), game.getGenre(), game.getPEGI(), game.getPrice(), parseDateToString(game.getReleaseDate())});
+        }
+    }
+
+    public void refreshData(){
+        application.xmlToArrayList("src/Games.xml");
+        ArrayList<Game> Games = application.getGames();
         model.setRowCount(0);
         for(Game game: Games){
             model.addRow(new Object[]{game.getName(), game.getGenre(), game.getPEGI(), game.getPrice(), parseDateToString(game.getReleaseDate())});
@@ -80,7 +92,7 @@ public class GUI {
         return releaseDateFormat.format(date);
     }
 
-    private void createTableModel(Application application){
+    private void createTableModel(){
         //add columns to table model
         model.addColumn("Name");
         model.addColumn("Genre");
@@ -89,7 +101,7 @@ public class GUI {
         model.addColumn("Release Date");
 
         //add rows to the table model
-        refreshData(application.getGames());
+        refreshData();
 
         //create a table with new model
         JTable dataTable = new JTable(model);
@@ -104,43 +116,48 @@ public class GUI {
         mainPanel.add(scrollPane);
     }
 
-    private void addOnClickButtons(Application application){
+    private void addOnClickButtons(){
         buttonQuickSort.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                refreshData();
                 application.quickSortData();
-                refreshData(application.getGames());
+                printData();
             }
         });
 
         refreshData.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                refreshData(application.getGames());
+                refreshData();
+                printData();
             }
         });
 
         buttonBubbleSort.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                refreshData();
                 application.bubbleSortData();
-                refreshData(application.getGames());
+                printData();
             }
         });
 
         buttonMergeSort.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                refreshData();
                 application.mergeSortData();
-                refreshData(application.getGames());
+                printData();
             }
         });
 
         buttonHeapSort.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                refreshData();
                 application.heapSortData();
-                refreshData(application.getGames());
+                printData();
             }
         });
     }

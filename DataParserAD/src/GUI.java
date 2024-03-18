@@ -38,6 +38,7 @@ public class GUI {
     JLabel timerLabel = new JLabel("The action took " + printTimer + "s");
     JLabel currentSortingAlgorithmLabel = new JLabel("Currently Using: " + currentSortingAlgorithm);
     JLabel currentDataStructureLabel = new JLabel("Currently Using " + currentDataStructure);
+    JLabel alertLabel = new JLabel("Notifications will appear here");
 
     //Create Text Fields
     JTextField searchInput = new JTextField("Type a game's name!");
@@ -84,6 +85,8 @@ public class GUI {
         mainPanel.add(currentSortingAlgorithmLabel);
         currentDataStructureLabel.setBounds(650, 25, 300, 50);
         mainPanel.add(currentDataStructureLabel);
+        alertLabel.setBounds(0, 925, 800, 50);
+        mainPanel.add(alertLabel);
 
         //add buttons and set their locations
         refreshData.setBounds(50, 125, 200, 50);
@@ -256,6 +259,22 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 currentDataStructure = "BinaryTree";
                 currentDataStructureLabel.setText("Currently Using: " + currentDataStructure);
+            }
+        });
+
+        buttonLinearSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(searchInput != null){
+                    int searchResult = application.linearSearch(searchInput.getText());
+                    if(application.getSelectedDataStructure() == Application.DataStructures.LinkedList){
+                        alertLabel.setText("The selected item is at index: " + searchResult +
+                                ". Meaning its at location " + (searchResult+1) + "in the list!");
+                    }
+                    //add other datastrructures
+                } else {
+                    //add notification
+                }
             }
         });
     }

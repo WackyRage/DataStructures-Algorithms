@@ -1,6 +1,8 @@
 import DataStructure.DataStructureOperations;
 import DataStructure.Node.Node;
 
+import java.util.Objects;
+
 public class LinearSearch {
     private DataStructureOperations<Game> Games;
     private String searchTerm;
@@ -12,12 +14,15 @@ public class LinearSearch {
 
     public int linearSearch(){
         int n = Games.size();
-
+        System.out.println(Games.size());
         //move through array sequentially
         for(int i = 0; i < n; i++){
-            if(Games.get(i).getValue().getName() == searchTerm){
+            if(Objects.equals(Games.get(i).getValue().getName(), searchTerm)){
+                System.out.println("we found it!");
                 return i;
             }
+            System.out.println(Games.get(i).getValue().getName());
+            System.out.println(searchTerm);
         }
         return -1;
     }

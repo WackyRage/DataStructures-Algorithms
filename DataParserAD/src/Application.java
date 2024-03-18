@@ -183,6 +183,17 @@ public class Application {
         selectedDataStructure = DataStructures.BinaryTree;
     }*/
 
+    public void refreshListGames(){
+        if(selectedDataStructure == DataStructures.LinkedList){
+            useLinkedList();
+        }
+        /*else if(selectedDataStructure == DataStructures.HashMap){
+            useHashMap();
+        }else if(selectedDataStructure == DataStructures.BinaryTree){
+            useBinaryTree();
+        }*/
+    }
+
     public DataStructureOperations<Game> getLinkedListGame() {
         return LinkedListGame;
     }

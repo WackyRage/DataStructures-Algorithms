@@ -136,6 +136,7 @@ public class GUI {
     public void refreshData(){
         application.xmlToArrayList("src/Games.xml");
         ArrayList<Game> Games = application.getGames();
+        application.refreshListGames();
         model.setRowCount(0);
         for(Game game: Games){
             model.addRow(new Object[]{game.getName(), game.getGenre(), game.getPEGI(), game.getPrice(), parseDateToString(game.getReleaseDate())});

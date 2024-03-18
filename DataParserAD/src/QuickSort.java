@@ -10,14 +10,13 @@ public class QuickSort {
 
         for (int j = low; j < high; j++){
             Game selectedGame = Games.get(j);
-            int price = selectedGame.getPrice();
 
-            if (price <= pivot.getPrice()){
-                //if smaller element then pivot is found
-                //swap it with greater element
+            if (selectedGame.getName().compareTo(pivot.getName()) <= 0) {
+                // If smaller element than pivot is found,
+                // swap it with greater element
                 i++;
 
-                //swap element I with J
+                // Swap element i with j
                 Game temp = Games.get(i);
                 Games.set(i, Games.get(j));
                 Games.set(j, temp);

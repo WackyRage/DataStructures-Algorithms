@@ -59,7 +59,7 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
     @Override
     public Node<T> get(int index) {
         if (index < 0 || head == null) {
-            return null; // Invalid index or empty list
+            return null;
         }
 
         Node<T> current = head;
@@ -67,7 +67,7 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
 
         while (current != null) {
             if (count == index) {
-                return current; // Return the value stored in the node
+                return current; 
             }
             current = current.getNext();
             count++;

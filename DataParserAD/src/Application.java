@@ -1,4 +1,3 @@
-import DataStructure.BinaryTree;
 import DataStructure.DataStructureOperations;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -29,6 +28,8 @@ public class Application {
     private DataStructure.DataStructureOperations<Game> LinkedListGame = new DataStructure.LinkedList<>();
     //private DataStructure.DataStructureOperations<Game> HashMapGame = new DataStructure.HashMap<>();
     //private DataStructure.DataStructureOperations<Game> BinaryTreeGame = new DataStructure.BinaryTree<>();
+
+    private LinearSearch linearSearch;
 
     public Application(){
         xmlToArrayList("src/Games.xml");
@@ -182,6 +183,21 @@ public class Application {
         }
         selectedDataStructure = DataStructures.BinaryTree;
     }*/
+
+    public int linearSearch(String searchTerm){
+        if(selectedDataStructure == DataStructures.LinkedList){
+            linearSearch = new LinearSearch(LinkedListGame, searchTerm);
+            return linearSearch.linearSearch();
+        } else if (selectedDataStructure == DataStructures.HashMap){
+            //bestaat nog niet
+            return -1;
+        } else if (selectedDataStructure == DataStructures.BinaryTree){
+            //destaat ook nog niet
+            return -1;
+        } else {
+            return -1;
+        }
+    }
 
     public void refreshListGames(){
         if(selectedDataStructure == DataStructures.LinkedList){

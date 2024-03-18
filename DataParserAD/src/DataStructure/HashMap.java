@@ -1,4 +1,8 @@
 package DataStructure;
 
-public class HashMap {
+import java.util.Map;
+
+public class HashMap<K, V> {
+
+
 }

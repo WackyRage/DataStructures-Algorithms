@@ -13,7 +13,7 @@ public class BubbleSort {
                 Game nextGame = games.get(j + 1);
 
                 //compare elements
-                if (currentGame.getPEGI() > nextGame.getPEGI()) {
+                if (currentGame.getPrice() > nextGame.getPrice()) {
 
                     games.set(j, nextGame);
                     games.set(j + 1, currentGame);

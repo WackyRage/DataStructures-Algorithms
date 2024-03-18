@@ -1,3 +1,5 @@
+import DataStructure.DataStructureOperations;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
@@ -111,10 +113,23 @@ public class GUI {
     }
 
     public void printData(){
-        ArrayList<Game> Games = application.getGames();
-        model.setRowCount(0);
-        for(Game game: Games){
-            model.addRow(new Object[]{game.getName(), game.getGenre(), game.getPEGI(), game.getPrice(), parseDateToString(game.getReleaseDate())});
+        if(application.getSelectedDataStructure() == Application.DataStructures.None) {
+            ArrayList<Game> Games = application.getGames();
+            model.setRowCount(0);
+            for(Game game: Games){
+                model.addRow(new Object[]{game.getName(), game.getGenre(), game.getPEGI(), game.getPrice(), parseDateToString(game.getReleaseDate())});
+            }
+        } else if (application.getSelectedDataStructure() == Application.DataStructures.LinkedList){
+            DataStructureOperations<Game> Games = application.getLinkedListGame();
+            model.setRowCount(0);
+            for(int j = 0; j < Games.size(); j++){
+                model.addRow(new Object[]{
+                        Games.get(j).getValue().getName(),
+                        Games.get(j).getValue().getGenre(),
+                        Games.get(j).getValue().getPEGI(),
+                        Games.get(j).getValue().getPrice(),
+                        parseDateToString(Games.get(j).getValue().getReleaseDate())});
+            }
         }
     }
 
@@ -174,7 +189,7 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 refreshData();
                 printData();
-                currentSortingAlgorithm = "No Data Structure Selected";
+                currentSortingAlgorithm = "No Sorting Algorithm Selected";
                 currentSortingAlgorithmLabel.setText("Currently Using: " + currentSortingAlgorithm);
             }
         });
@@ -221,6 +236,7 @@ public class GUI {
         buttonLinkedList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                application.useLinkedList();
                 currentDataStructure = "LinkedList";
                 currentDataStructureLabel.setText("Currently Using: " + currentDataStructure);
             }

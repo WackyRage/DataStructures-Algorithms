@@ -1,3 +1,5 @@
+import DataStructure.BinaryTree;
+import DataStructure.DataStructureOperations;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -17,16 +19,16 @@ import java.util.Date;
 public class Application {
     private SimpleDateFormat releaseDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private ArrayList<Game> Games = new ArrayList<>();
-    private enum DataStructures{
+    enum DataStructures{
         None,
         LinkedList,
         HashMap,
         BinaryTree;
     }
     private DataStructures selectedDataStructure = DataStructures.None;
-    private DataStructure.LinkedList<Game> LinkedListGame = new DataStructure.LinkedList<>();
-    //private DataStructure.HashMap<Game> HashMapGame = new DataStructure.HashMap();
-    //private DataStructure.BinaryTree<Game> BinaryTreeGame = new DataStructure.BinaryTree();
+    private DataStructure.DataStructureOperations<Game> LinkedListGame = new DataStructure.LinkedList<>();
+    //private DataStructure.DataStructureOperations<Game> HashMapGame = new DataStructure.HashMap<>();
+    //private DataStructure.DataStructureOperations<Game> BinaryTreeGame = new DataStructure.BinaryTree<>();
 
     public Application(){
         xmlToArrayList("src/Games.xml");
@@ -108,23 +110,45 @@ public class Application {
     }
 
     public void quickSortData(){
-        QuickSort.quickSort(Games, 0, (Games.size() - 1));
-        System.out.println("The games have been sorted using Quicksort!");
+        if (selectedDataStructure == DataStructures.None){
+            System.out.print("No Data Structure Selected");
+        } else if (selectedDataStructure == DataStructures.LinkedList){
+            QuickSort.quickSort(LinkedListGame, 0, (Games.size() - 1));
+            System.out.println("The games have been sorted using Quicksort!");
+        } /*else if (selectedDataStructure == DataStructures.HashMap){
+            QuickSort.quickSort(HashMapGame, 0, (Games.size() - 1));
+            System.out.println("The games have been sorted using Quicksort!");
+        } else if (selectedDataStructure == DataStructures.BinaryTree){
+            QuickSort.quickSort(BinaryTreeGame, 0, (Games.size() - 1));
+            System.out.println("The games have been sorted using Quicksort!");
+        }*/
     }
 
     public void bubbleSortData(){
-        BubbleSort.bubbleSort(Games);
-        System.out.println("The games have been sorted using Bubblesort!");
+        if (selectedDataStructure == DataStructures.None){
+            System.out.print("No Data Structure Selected");
+        } else if (selectedDataStructure == DataStructures.LinkedList){
+            BubbleSort.bubbleSort(LinkedListGame);
+            System.out.println("The games have been sorted using Bubblesort!");
+        }
     }
 
     public void mergeSortData(){
-        MergeSort.mergeSort(Games, 0, (Games.size() - 1));
-        System.out.println("The games have been sorted using Mergesort!");
+        if (selectedDataStructure == DataStructures.None){
+            System.out.print("No Data Structure Selected");
+        } else if (selectedDataStructure == DataStructures.LinkedList){
+            MergeSort.mergeSort(LinkedListGame, 0, (LinkedListGame.size() - 1));
+            System.out.println("The games have been sorted using Mergesort!");
+        }
     }
 
     public void heapSortData() {
-        HeapSort.heapSort(Games);
-        System.out.println("The games have been sorted using Heapsort!");
+        if (selectedDataStructure == DataStructures.None){
+            System.out.print("No Data Structure Selected");
+        } else if (selectedDataStructure == DataStructures.LinkedList){
+            HeapSort.heapSort(LinkedListGame);
+            System.out.println("The games have been sorted using Heapsort!");
+        }
     }
 
     public ArrayList<Game> getGames() {
@@ -158,4 +182,12 @@ public class Application {
         }
         selectedDataStructure = DataStructures.BinaryTree;
     }*/
+
+    public DataStructureOperations<Game> getLinkedListGame() {
+        return LinkedListGame;
+    }
+
+    public DataStructures getSelectedDataStructure() {
+        return selectedDataStructure;
+    }
 }

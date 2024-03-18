@@ -1,7 +1,9 @@
+import DataStructure.DataStructureOperations;
+
 import java.util.ArrayList;
 
 public class MergeSort{
-    static void merge(ArrayList<Game> Games, int p, int q, int r){
+    static void merge(DataStructureOperations<Game> Games, int p, int q, int r){
         int n1 = q - p + 1;
         int n2 = r - q;
 
@@ -9,10 +11,10 @@ public class MergeSort{
         ArrayList<Game> M = new ArrayList<>(n2);
 
         for(int i = 0; i < n1; i++){
-            L.add(i, Games.get(p + i));
+            L.add(i, Games.get(p + i).getValue());
         }
         for(int j = 0; j < n2; j++){
-            M.add(j, Games.get(q + 1 + j));
+            M.add(j, Games.get(q + 1 + j).getValue());
         }
 
         //maintain current index of sub-arrays
@@ -46,16 +48,16 @@ public class MergeSort{
         }
     }
 
-    static void mergeSort(ArrayList<Game> games, int l, int r){
+    static void mergeSort(DataStructureOperations<Game> Games, int l, int r){
         if(l < r){
             //m is the point where the array gets split
             int m = (l + r) / 2;
 
-            mergeSort(games, l, m);
-            mergeSort(games, m + 1, r);
+            mergeSort(Games, l, m);
+            mergeSort(Games, m + 1, r);
 
             //Merge the sorted sub-arrays
-            merge(games, l, m, r);
+            merge(Games, l, m, r);
         }
     }
 }

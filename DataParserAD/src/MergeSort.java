@@ -22,7 +22,7 @@ public class MergeSort{
 
         //until the end is reached of L or M, pick larger element.
         while (i < n1 && j < n2){
-            if (L.get(i).getPrice() <= M.get(j).getPrice()){
+            if (L.get(i).getName().compareTo(M.get(j).getName()) <= 0){
                 Games.set(k, L.get(i));
                 i++;
             } else {

@@ -7,7 +7,7 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
         T value;
         Node<T> next;
 
-        Node(T data){
+        Node(T data) {
             value = data;
             next = null;
         }
@@ -33,7 +33,7 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
         Node<T> temp = head;
         Node<T> prev = null;
 
-        if(temp != null && temp.value == value) {
+        if (temp != null && temp.value == value) {
             head = temp.next;
             return;
         }
@@ -43,7 +43,7 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
             temp = temp.next;
         }
 
-        if(temp == null) {
+        if (temp == null) {
             return;
         }
 
@@ -53,7 +53,7 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
     public Boolean contains(T value) {
         Node<T> current = head;
         while (current != null) {
-             if (current.value.equals(value)) {
+            if (current.value.equals(value)) {
                 return true;
             }
             current = current.next;
@@ -61,7 +61,7 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
         return false;
     }
 
-    public Node<T> get(int index){
+    public Node<T> get(int index) {
         if (index < 0 || head == null) {
             return null; // Invalid index or empty list
         }
@@ -97,7 +97,7 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
             System.out.println("Invalid index. Cannot set value.");
         }
     }
-
+}
 
 //    public static void main(String[] args) {
 //        LinkedList<String> linkedList = new LinkedList<>();
@@ -165,4 +165,4 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
 //
 //        System.out.println();
 //    }
-}
+

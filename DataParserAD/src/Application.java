@@ -20,11 +20,13 @@ public class Application {
     private enum DataStructures{
         None,
         LinkedList,
-        HashMap;
+        HashMap,
+        BinaryTree;
     }
-    private DataStructures selectedDataStructure = DataStructure.None;
+    private DataStructures selectedDataStructure = DataStructures.None;
     private DataStructure.LinkedList<Game> LinkedListGame = new DataStructure.LinkedList<>();
     //private DataStructure.HashMap<Game> HashMapGame = new DataStructure.HashMap();
+    //private DataStructure.BinaryTree<Game> BinaryTreeGame = new DataStructure.BinaryTree();
 
     public Application(){
         xmlToArrayList("src/Games.xml");
@@ -133,7 +135,7 @@ public class Application {
         return releaseDateFormat;
     }
 
-    public void useLinkedList(ArrayList<Game> Games){
+    public void useLinkedList(){
         LinkedListGame = new DataStructure.LinkedList<>();
         for(Game game: Games){
             LinkedListGame.add(game);
@@ -141,11 +143,19 @@ public class Application {
         selectedDataStructure = DataStructures.LinkedList;
     }
 
-    /*public void useHashMap(ArrayList<Game> Games){
+    /*public void useHashMap(){
         HashMapGame = new DataStructure.LinkedList<>();
         for(Game game: Games){
             HashMapGame.add(game);
         }
         selectedDataStructure = DataStructures.HashMap;
+    }*/
+
+    /*public void useBinaryTree(){
+        BinaryTreeGame = new DataStructure.BinaryTree<>();
+        for(Game game: Games){
+            BinaryTreeGame.add(game);
+        }
+        selectedDataStructure = DataStructures.BinaryTree;
     }*/
 }

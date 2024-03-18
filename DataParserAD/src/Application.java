@@ -17,6 +17,14 @@ import java.util.Date;
 public class Application {
     private SimpleDateFormat releaseDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private ArrayList<Game> Games = new ArrayList<>();
+    private enum DataStructures{
+        None,
+        LinkedList,
+        HashMap;
+    }
+    private DataStructures selectedDataStructure = DataStructure.None;
+    private DataStructure.LinkedList<Game> LinkedListGame = new DataStructure.LinkedList<>();
+    //private DataStructure.HashMap<Game> HashMapGame = new DataStructure.HashMap();
 
     public Application(){
         xmlToArrayList("src/Games.xml");
@@ -31,8 +39,7 @@ public class Application {
         return releaseDateFormat.format(date);
     }
 
-    public void xmlToArrayList(String fileLocation)
-    {
+    public void xmlToArrayList(String fileLocation) {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try{
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -126,5 +133,19 @@ public class Application {
         return releaseDateFormat;
     }
 
+    public void useLinkedList(ArrayList<Game> Games){
+        LinkedListGame = new DataStructure.LinkedList<>();
+        for(Game game: Games){
+            LinkedListGame.add(game);
+        }
+        selectedDataStructure = DataStructures.LinkedList;
+    }
 
+    /*public void useHashMap(ArrayList<Game> Games){
+        HashMapGame = new DataStructure.LinkedList<>();
+        for(Game game: Games){
+            HashMapGame.add(game);
+        }
+        selectedDataStructure = DataStructures.HashMap;
+    }*/
 }

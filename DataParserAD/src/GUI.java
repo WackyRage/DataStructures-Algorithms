@@ -10,8 +10,8 @@ public class GUI {
     private Application application;
     private SimpleDateFormat releaseDateFormat;
     private double printTimer;
-    private String currentSortingAlgorithm = "No Data Structure Selected!";
-    private String currentDataStructure = "";
+    private String currentSortingAlgorithm = "No Sorting Algorithm Selected!";
+    private String currentDataStructure = "No Data Structure Selected!";
 
     //create Pages
     JFrame mainPage = new JFrame();
@@ -35,6 +35,10 @@ public class GUI {
     JLabel titleMainPage = new JLabel("Data Parser A&D");
     JLabel timerLabel = new JLabel("The action took " + printTimer + "s");
     JLabel currentSortingAlgorithmLabel = new JLabel("Currently Using: " + currentSortingAlgorithm);
+    JLabel currentDataStructureLabel = new JLabel("Currently Using " + currentDataStructure);
+
+    //Create Text Fields
+    JTextField searchInput = new JTextField("Type a game's name!");
 
     //Create JTable
     DefaultTableModel model = new DefaultTableModel();
@@ -74,8 +78,10 @@ public class GUI {
         mainPanel.add(titleMainPage);
         timerLabel.setBounds(950, 25, 200, 50);
         mainPanel.add(timerLabel);
-        currentSortingAlgorithmLabel.setBounds(650, 25, 300, 50);
+        currentSortingAlgorithmLabel.setBounds(350, 25, 300, 50);
         mainPanel.add(currentSortingAlgorithmLabel);
+        currentDataStructureLabel.setBounds(650, 25, 300, 50);
+        mainPanel.add(currentDataStructureLabel);
 
         //add buttons and set their locations
         refreshData.setBounds(50, 125, 200, 50);
@@ -88,6 +94,20 @@ public class GUI {
         mainPanel.add(buttonMergeSort);
         buttonBubbleSort.setBounds(350, 325, 200, 50);
         mainPanel.add(buttonBubbleSort);
+        buttonLinkedList.setBounds(650, 125, 220, 50);
+        mainPanel.add(buttonLinkedList);
+        buttonHashMap.setBounds(650, 225, 220, 50);
+        mainPanel.add(buttonHashMap);
+        buttonBinaryTree.setBounds(650, 325, 220, 50);
+        mainPanel.add(buttonBinaryTree);
+        buttonLinearSearch.setBounds(950, 225, 200, 50);
+        mainPanel.add(buttonLinearSearch);
+        buttonBinarySearch.setBounds(950, 325, 200, 50);
+        mainPanel.add(buttonBinarySearch);
+
+        //add text field
+        searchInput.setBounds(950, 125, 200, 50);
+        mainPanel.add(searchInput);
     }
 
     public void printData(){
@@ -195,6 +215,30 @@ public class GUI {
                 printData();
                 currentSortingAlgorithm = "Heapsort";
                 currentSortingAlgorithmLabel.setText("Currently Using: " + currentSortingAlgorithm);
+            }
+        });
+
+        buttonLinkedList.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                currentDataStructure = "LinkedList";
+                currentDataStructureLabel.setText("Currently Using: " + currentDataStructure);
+            }
+        });
+
+        buttonHashMap.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                currentDataStructure = "HashMap";
+                currentDataStructureLabel.setText("Currently Using: " + currentDataStructure);
+            }
+        });
+
+        buttonBinaryTree.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                currentDataStructure = "BinaryTree";
+                currentDataStructureLabel.setText("Currently Using: " + currentDataStructure);
             }
         });
     }

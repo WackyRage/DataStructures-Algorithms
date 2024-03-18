@@ -184,14 +184,17 @@ public class GUI {
     }
 
     public void initialiseTimer(){
+        //resets variables and starts timer
         startTimer = 0;
         duration = 0;
         startTimer = System.nanoTime();
     }
 
     public void endTimer(){
-        duration = (System.nanoTime() - startTimer);
-        printTimer = toDouble(duration);
-        timerLabel.setText("The timer took " + printTimer + "ns");
+        duration = (System.nanoTime() - startTimer); //get time spend
+        //write to console time spend in nanoseconds
+        System.out.println("It took " + (System.nanoTime() - startTimer +" Nano Seconds to sort"));
+        printTimer = toDouble(duration/1000000000); //Set to seconds
+        timerLabel.setText("The timer took " + printTimer + "s"); // Display seconds to sort on frontend
     }
 }

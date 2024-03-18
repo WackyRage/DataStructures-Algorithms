@@ -1,7 +1,5 @@
-import javax.sql.RowSet;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -12,6 +10,8 @@ public class GUI {
     private Application application;
     private SimpleDateFormat releaseDateFormat;
     private double printTimer;
+    private String currentSortingAlgorithm = "No Data Structure Selected!";
+    private String currentDataStructure = "";
 
     //create Pages
     JFrame mainPage = new JFrame();
@@ -25,10 +25,16 @@ public class GUI {
     JButton buttonMergeSort = new JButton("MergeSort");
     JButton buttonBubbleSort = new JButton("BubbleSort");
     JButton refreshData = new JButton("Refresh Data");
+    JButton buttonLinkedList = new JButton("Use LinkedList Data Structure");
+    JButton buttonHashMap = new JButton("Use HashMap Data Structure");
+    JButton buttonBinaryTree = new JButton("Use Binary Tree Data Structure");
+    JButton buttonLinearSearch = new JButton("Search with Linear Search");
+    JButton buttonBinarySearch = new JButton("Search with Binary Search");
 
     //Create Labels
     JLabel titleMainPage = new JLabel("Data Parser A&D");
-    JLabel timerLabel = new JLabel("The timer took " + printTimer + "ns");
+    JLabel timerLabel = new JLabel("The action took " + printTimer + "s");
+    JLabel currentSortingAlgorithmLabel = new JLabel("Currently Using: " + currentSortingAlgorithm);
 
     //Create JTable
     DefaultTableModel model = new DefaultTableModel();
@@ -40,9 +46,10 @@ public class GUI {
     public GUI(Application application) {
         this.application = application;
         releaseDateFormat = application.getReleaseDateFormat();
+
         //create MainPage
         mainPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainPage.setSize(800, 800);
+        mainPage.setSize(1200, 1000);
         mainPage.setTitle("DataParserAD");
         mainPage.setVisible(true);
         mainPage.setResizable(false);
@@ -50,8 +57,10 @@ public class GUI {
         //add mainPanel to mainPage
         createMainPanel();
 
+        //add tables to model
         createTableModel();
 
+        //add on click for the buttons
         addOnClickButtons();
     }
 
@@ -63,19 +72,21 @@ public class GUI {
         //add labels and set their locations
         titleMainPage.setBounds(50, 25, 200, 50);
         mainPanel.add(titleMainPage);
-        timerLabel.setBounds(600, 25, 200, 50);
+        timerLabel.setBounds(950, 25, 200, 50);
         mainPanel.add(timerLabel);
+        currentSortingAlgorithmLabel.setBounds(650, 25, 300, 50);
+        mainPanel.add(currentSortingAlgorithmLabel);
 
         //add buttons and set their locations
-        refreshData.setBounds(350, 25, 200, 50);
+        refreshData.setBounds(50, 125, 200, 50);
         mainPanel.add(refreshData);
-        buttonQuickSort.setBounds(50, 125, 200, 50);
+        buttonQuickSort.setBounds(50, 225, 200, 50);
         mainPanel.add(buttonQuickSort);
-        buttonHeapSort.setBounds(350, 125, 200, 50);
+        buttonHeapSort.setBounds(350, 225, 200, 50);
         mainPanel.add(buttonHeapSort);
-        buttonMergeSort.setBounds(50, 225, 200, 50);
+        buttonMergeSort.setBounds(50, 325, 200, 50);
         mainPanel.add(buttonMergeSort);
-        buttonBubbleSort.setBounds(350, 225, 200, 50);
+        buttonBubbleSort.setBounds(350, 325, 200, 50);
         mainPanel.add(buttonBubbleSort);
     }
 
@@ -113,14 +124,14 @@ public class GUI {
 
         //create a table with new model
         JTable dataTable = new JTable(model);
-//        dataTable.setBounds(0, 325, 600, 500);
+        //dataTable.setBounds(0, 325, 600, 500);
         dataTable.setDefaultEditor(Object.class, null);
         mainPanel.add(dataTable);
 
         // Add the table to a scroll pane
 
         JScrollPane scrollPane = new JScrollPane(dataTable);
-        scrollPane.setBounds(0, 325, 800, 500); // Set bounds for the scroll pane
+        scrollPane.setBounds(0, 425, 1200, 500); // Set bounds for the scroll pane
         mainPanel.add(scrollPane);
     }
 
@@ -133,6 +144,8 @@ public class GUI {
                 application.quickSortData();
                 endTimer();
                 printData();
+                currentSortingAlgorithm = "Quicksort";
+                currentSortingAlgorithmLabel.setText("Currently Using: " + currentSortingAlgorithm);
             }
         });
 
@@ -141,6 +154,8 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 refreshData();
                 printData();
+                currentSortingAlgorithm = "No Data Structure Selected";
+                currentSortingAlgorithmLabel.setText("Currently Using: " + currentSortingAlgorithm);
             }
         });
 
@@ -152,6 +167,8 @@ public class GUI {
                 application.bubbleSortData();
                 endTimer();
                 printData();
+                currentSortingAlgorithm = "BubbleSort";
+                currentSortingAlgorithmLabel.setText("Currently Using: " + currentSortingAlgorithm);
             }
         });
 
@@ -163,6 +180,8 @@ public class GUI {
                 application.mergeSortData();
                 endTimer();
                 printData();
+                currentSortingAlgorithm = "Mergesort";
+                currentSortingAlgorithmLabel.setText("Currently Using: " + currentSortingAlgorithm);
             }
         });
 
@@ -174,6 +193,8 @@ public class GUI {
                 application.heapSortData();
                 endTimer();
                 printData();
+                currentSortingAlgorithm = "Heapsort";
+                currentSortingAlgorithmLabel.setText("Currently Using: " + currentSortingAlgorithm);
             }
         });
     }
@@ -193,8 +214,8 @@ public class GUI {
     public void endTimer(){
         duration = (System.nanoTime() - startTimer); //get time spend
         //write to console time spend in nanoseconds
-        System.out.println("It took " + (System.nanoTime() - startTimer +" Nano Seconds to sort"));
+        System.out.println("The action took " + (System.nanoTime() - startTimer +"ns"));
         printTimer = toDouble(duration/1000000000); //Set to seconds
-        timerLabel.setText("The timer took " + printTimer + "s"); // Display seconds to sort on frontend
+        timerLabel.setText("The action took " + printTimer + "s"); // Display seconds to sort on frontend
     }
 }

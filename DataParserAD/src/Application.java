@@ -37,7 +37,7 @@ public class Application {
         try{
             DocumentBuilder builder = factory.newDocumentBuilder();
 
-            Document document = (Document) builder.parse(new File(fileLocation));
+            Document document = builder.parse(new File(fileLocation));
 
             document.getDocumentElement().normalize();
 

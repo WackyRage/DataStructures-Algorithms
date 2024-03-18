@@ -11,6 +11,7 @@ import java.util.Date;
 public class GUI {
     private Application application;
     private SimpleDateFormat releaseDateFormat;
+    private double printTimer;
 
     //create Pages
     JFrame mainPage = new JFrame();
@@ -27,9 +28,14 @@ public class GUI {
 
     //Create Labels
     JLabel titleMainPage = new JLabel("Data Parser A&D");
+    JLabel timerLabel = new JLabel("The timer took " + printTimer + "ns");
 
     //Create JTable
     DefaultTableModel model = new DefaultTableModel();
+
+    //Timer
+    long startTimer = 0;
+    long duration = 0;
 
     public GUI(Application application) {
         this.application = application;
@@ -57,6 +63,8 @@ public class GUI {
         //add labels and set their locations
         titleMainPage.setBounds(50, 25, 200, 50);
         mainPanel.add(titleMainPage);
+        timerLabel.setBounds(600, 25, 200, 50);
+        mainPanel.add(timerLabel);
 
         //add buttons and set their locations
         refreshData.setBounds(350, 25, 200, 50);
@@ -121,7 +129,9 @@ public class GUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 refreshData();
+                initialiseTimer();
                 application.quickSortData();
+                endTimer();
                 printData();
             }
         });
@@ -138,7 +148,9 @@ public class GUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 refreshData();
+                initialiseTimer();
                 application.bubbleSortData();
+                endTimer();
                 printData();
             }
         });
@@ -147,7 +159,9 @@ public class GUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 refreshData();
+                initialiseTimer();
                 application.mergeSortData();
+                endTimer();
                 printData();
             }
         });
@@ -156,9 +170,28 @@ public class GUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 refreshData();
+                initialiseTimer();
                 application.heapSortData();
+                endTimer();
                 printData();
             }
         });
+    }
+
+    public double toDouble(Long l){
+        String s = l + "";
+        return Double.parseDouble(s);
+    }
+
+    public void initialiseTimer(){
+        startTimer = 0;
+        duration = 0;
+        startTimer = System.nanoTime();
+    }
+
+    public void endTimer(){
+        duration = (System.nanoTime() - startTimer);
+        printTimer = toDouble(duration);
+        timerLabel.setText("The timer took " + printTimer + "ns");
     }
 }

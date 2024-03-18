@@ -27,10 +27,10 @@ public class HeapSort {
         int l = 2 * i + 1;
         int r = 2 * i + 2;
 
-        if (l < n && games.get(l).getName().compareTo(games.get(largest).getName()) > 0)
+        if (l < n && games.get(l).getPrice() > games.get(largest).getPrice())
             largest = l;
 
-        if (r < n && games.get(r).getName().compareTo(games.get(largest).getName()) > 0)
+        if (r < n && games.get(r).getPrice() > games.get(largest).getPrice())
             largest = r;
 
         // Swap and continue heapifying if root is not largest
@@ -42,6 +42,4 @@ public class HeapSort {
             heap(games, n, largest);
         }
     }
-
-
 }

@@ -1,7 +1,9 @@
+package Algorithms;
+import Game.Game;
 import DataStructure.DataStructureOperations;
 
 public class BubbleSort {
-    static void bubbleSort(DataStructureOperations<Game> Games) {
+    public static void bubbleSort(DataStructureOperations<Game> Games) {
         int size = Games.size();
 
         // Loop through all game elements
@@ -9,8 +11,8 @@ public class BubbleSort {
 
             // Element compare loop
             for (int j = 0; j < size - i - 1; j++){
-                Game currentGame = Games.get(j).getValue();
-                Game nextGame = Games.get(j + 1).getValue();
+                Game currentGame = Games.get(j);
+                Game nextGame = Games.get(j + 1);
 
                 //compare elements
                 if (currentGame.getName().compareTo(nextGame.getName()) > 0) {

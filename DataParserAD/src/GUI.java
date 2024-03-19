@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import Game.Game;
 
 public class GUI {
     private Application application;
@@ -23,9 +24,9 @@ public class GUI {
 
     //create Buttons
     JButton buttonQuickSort = new JButton("Quicksort");
-    JButton buttonHeapSort = new JButton("HeapSort");
-    JButton buttonMergeSort = new JButton("MergeSort");
-    JButton buttonBubbleSort = new JButton("BubbleSort");
+    JButton buttonHeapSort = new JButton("Algorithms.HeapSort");
+    JButton buttonMergeSort = new JButton("Algorithms.MergeSort");
+    JButton buttonBubbleSort = new JButton("Algorithms.BubbleSort");
     JButton refreshData = new JButton("Refresh Data");
     JButton buttonLinkedList = new JButton("Use LinkedList Data Structure");
     JButton buttonHashMap = new JButton("Use HashMap Data Structure");
@@ -127,11 +128,11 @@ public class GUI {
             model.setRowCount(0);
             for(int j = 0; j < Games.size(); j++){
                 model.addRow(new Object[]{
-                        Games.get(j).getValue().getName(),
-                        Games.get(j).getValue().getGenre(),
-                        Games.get(j).getValue().getPEGI(),
-                        Games.get(j).getValue().getPrice(),
-                        parseDateToString(Games.get(j).getValue().getReleaseDate())});
+                        Games.get(j).getName(),
+                        Games.get(j).getGenre(),
+                        Games.get(j).getPEGI(),
+                        Games.get(j).getPrice(),
+                        parseDateToString(Games.get(j).getReleaseDate())});
             }
         }
     }
@@ -206,7 +207,7 @@ public class GUI {
                 application.bubbleSortData();
                 endTimer();
                 printData();
-                currentSortingAlgorithm = "BubbleSort";
+                currentSortingAlgorithm = "Algorithms.BubbleSort";
                 currentSortingAlgorithmLabel.setText("Currently Using: " + currentSortingAlgorithm);
             }
         });

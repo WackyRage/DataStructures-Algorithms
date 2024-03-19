@@ -2,7 +2,7 @@ package DataStructure;
 
 import DataStructure.Node.Entry;
 
-public class HashMap<K, T> {
+public class HashMap<K, T>  {
     private int capacity = 250;
     private Entry<K, T>[] table;
 
@@ -79,7 +79,7 @@ public class HashMap<K, T> {
         }
     }
 
-    public boolean contains(T value){
+    public Boolean contains(T value){
         for (Entry<K, T> entry : table) {
             Entry<K, T> current = entry;
             while (current != null) {

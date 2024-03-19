@@ -1,3 +1,4 @@
+import Algorithms.*;
 import DataStructure.DataStructureOperations;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -14,6 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import Game.Game;
 
 public class Application {
     private SimpleDateFormat releaseDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -117,10 +119,10 @@ public class Application {
             QuickSort.quickSort(LinkedListGame, 0, (Games.size() - 1));
             System.out.println("The games have been sorted using Quicksort!");
         } /*else if (selectedDataStructure == DataStructures.HashMap){
-            QuickSort.quickSort(HashMapGame, 0, (Games.size() - 1));
+            Algorithms.QuickSort.quickSort(HashMapGame, 0, (Games.size() - 1));
             System.out.println("The games have been sorted using Quicksort!");
         } else if (selectedDataStructure == DataStructures.BinaryTree){
-            QuickSort.quickSort(BinaryTreeGame, 0, (Games.size() - 1));
+            Algorithms.QuickSort.quickSort(BinaryTreeGame, 0, (Games.size() - 1));
             System.out.println("The games have been sorted using Quicksort!");
         }*/
     }

@@ -124,16 +124,16 @@ public class GUI {
                 model.addRow(new Object[]{game.getName(), game.getGenre(), game.getPEGI(), game.getPrice(), parseDateToString(game.getReleaseDate())});
             }
         } else if (application.getSelectedDataStructure() == Application.DataStructures.LinkedList){
-            DataStructureOperations<Game> Games = application.getLinkedListGame();
-            model.setRowCount(0);
-            for(int j = 0; j < Games.size(); j++){
-                model.addRow(new Object[]{
-                        Games.get(j).getName(),
-                        Games.get(j).getGenre(),
-                        Games.get(j).getPEGI(),
-                        Games.get(j).getPrice(),
-                        parseDateToString(Games.get(j).getReleaseDate())});
-            }
+//            DataStructureOperations<Game> Games = application.getLinkedListGame();
+//            model.setRowCount(0);
+//            for(int j = 0; j < Games.size(); j++){
+//                model.addRow(new Object[]{
+//                        Games.get(j).getName(),
+//                        Games.get(j).getGenre(),
+//                        Games.get(j).getPEGI(),
+//                        Games.get(j).getPrice(),
+//                        parseDateToString(Games.get(j).getReleaseDate())});
+//            }
         }
     }
 
@@ -241,7 +241,7 @@ public class GUI {
         buttonLinkedList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                application.useLinkedList();
+            //    application.useLinkedList();
                 currentDataStructure = "LinkedList";
                 currentDataStructureLabel.setText("Currently Using: " + currentDataStructure);
             }

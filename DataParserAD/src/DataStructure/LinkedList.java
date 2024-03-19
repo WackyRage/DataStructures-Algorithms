@@ -2,9 +2,10 @@ package DataStructure;
 
 import DataStructure.Node.Node;
 
-public class LinkedList<T>  implements DataStructureOperations<T> {
+public class LinkedList<K, T>  implements DataStructureOperations<K, T> {
     private Node<T> head;
 
+    @Override
     public void add(T value) {
         Node<T> newNode = new Node<>(value);
 
@@ -22,16 +23,22 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
     }
 
     @Override
-    public void delete(T value) {
+    public void add(K key, T value) {
+        throw new UnsupportedOperationException("Linked list does not require a key for adding elements.");
+    }
+
+
+    @Override
+    public void delete(K key) {
         Node<T> temp = head;
         Node<T> prev = null;
 
-        if (temp != null && temp.getValue().equals(value)) {
+        if (temp != null && temp.getValue().equals(key)) {
             head = temp.getNext();
             return;
         }
 
-        while (temp != null && !temp.getValue().equals(value)) {
+        while (temp != null && !temp.getValue().equals(key)) {
             prev = temp;
             temp = temp.getNext();
         }
@@ -44,10 +51,10 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
     }
 
     @Override
-    public Boolean contains(T value) {
+    public boolean contains(K key) {
         Node<T> current = head;
         while (current != null) {
-            if (current.getValue().equals(value)) {
+            if (current.getValue().equals(key)) {
                 return true;
             }
             current = current.getNext();
@@ -56,20 +63,23 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
     }
 
     @Override
-    public T get(int index) {
-        if (index < 0 || head == null) {
-            return null;
-        }
-
-        Node<T> current = head;
-        int count = 0;
-
-        while (current != null) {
-            if (count == index) {
-                return current.getValue();
+    public T get(K key) {
+        if (key instanceof Integer) {
+            int index = (Integer) key;
+            if (index < 0 || head == null || index >= size()) {
+                return null;
             }
-            current = current.getNext();
-            count++;
+
+            Node<T> current = head;
+            int count = 0;
+
+            while (current != null) {
+                if (count == index) {
+                    return current.getValue();
+                }
+                current = current.getNext();
+                count++;
+            }
         }
         return null;
     }
@@ -86,28 +96,31 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
     }
 
     @Override
-    public void set(int index, T value) {
-        Node<T> current = head;
-        int count = 0;
-        while (current != null && count < index) {
-            current = current.getNext();
-            count++;
-        }
-        if (current != null) {
-            current.setValue(value);
-        } else {
-            System.out.println("Invalid index");
+    public void set(K key, T value) {
+        if (key instanceof Integer) {
+            int index = (Integer) key;
+            Node<T> current = head;
+            int count = 0;
+            while (current != null && count < index) {
+                current = current.getNext();
+                count++;
+            }
+            if (current != null) {
+                current.setValue(value);
+            } else {
+                System.out.println("Invalid index");
+            }
         }
     }
 
 
     public static void main(String[] args) {
-        LinkedList<String> linkedList = new LinkedList<>();
+        LinkedList<Integer, String> linkedList = new LinkedList<>();
 
         // Append some values
-        linkedList.add("Apple");
-        linkedList.add("Banana");
-        linkedList.add("Orange");
+        linkedList.add(1, "Apple");
+        linkedList.add(2, "Banana");
+        linkedList.add(3, "Orange");
 
         // Loop through the linked list to print its contents
         System.out.println("Linked list contents:");
@@ -118,37 +131,37 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
         }
         System.out.println(); // Print a newline after printing the linked list
 
-//        // Search for a value by index
-//        int index = 1;
-//        String nodeAtIndex = linkedList.get(index);
-//        if (nodeAtIndex != null) {
-//            System.out.println("Node at index " + index + " contains value: " + nodeAtIndex);
-//        } else {
-//            System.out.println("Node at index " + index + " not found.");
-//        }
-//
-//        // Print the linked list using a loop
-//        System.out.println("Linked list contents using loop:");
-//        for (int i = 0; i < linkedList.size(); i++) {
-//            String node = linkedList.get(i);
-//            System.out.print(node + " ");
-//        }
-//        System.out.println(); // Print a newline after printing the linked list
-//
-//        // Print the size of the linked list
-//        System.out.println("Size of the linked list: " + linkedList.size());
-//
-//        // Search for a value
-//        String searchValue = "Banana";
-//        if (linkedList.contains(searchValue)) {
-//            System.out.println("Value " + searchValue + " found in the list.");
-//        } else {
-//            System.out.println("Value " + searchValue + " not found in the list.");
-//        }
+        // Search for a value by index
+        int index = 1;
+        String nodeAtIndex = linkedList.get(index);
+        if (nodeAtIndex != null) {
+            System.out.println("Node at index " + index + " contains value: " + nodeAtIndex);
+        } else {
+            System.out.println("Node at index " + index + " not found.");
+        }
+
+        // Print the linked list using a loop
+        System.out.println("Linked list contents using loop:");
+        for (int i = 0; i < linkedList.size(); i++) {
+            String node = linkedList.get(i);
+            System.out.print(node + " ");
+        }
+        System.out.println(); // Print a newline after printing the linked list
+
+        // Print the size of the linked list
+        System.out.println("Size of the linked list: " + linkedList.size());
+
+        // Search for a value
+        String searchValue = "Banana";
+        if (linkedList.contains(Integer.parseInt(searchValue))) {
+            System.out.println("Value " + searchValue + " found in the list.");
+        } else {
+            System.out.println("Value " + searchValue + " not found in the list.");
+        }
 
         // Delete a value
         String deleteValue = "Apple";
-        linkedList.delete(deleteValue);
+        linkedList.delete(Integer.parseInt(deleteValue));
         System.out.println("List after deleting " + deleteValue + ":");
 
         // Loop through the updated linked list to print its contents
@@ -161,9 +174,9 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
         System.out.println(); // Print a newline after printing the linked list
 
         // Change the value at index 0 to "Grapes"
-        int indexToChange = 1;
+        int indexToChange = 0;
         String newValue = "Grapes";
-        linkedList.set(indexToChange, newValue);
+        linkedList.set(Integer.parseInt(String.valueOf(indexToChange)), newValue);
         System.out.println("List after changing value at index " + indexToChange + " to " + newValue + ":");
 
         // Print the linked list using a loop
@@ -172,6 +185,6 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
             String node = linkedList.get(i);
             System.out.print(node + " ");
         }
-        System.out.println(); // Print a newline after printing the linked list
+        System.out.println();
     }
 }

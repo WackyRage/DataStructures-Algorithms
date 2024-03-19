@@ -2,7 +2,7 @@ package DataStructure;
 
 import DataStructure.Node.Entry;
 
-public class HashMap<K, T>  {
+public class HashMap<K, T> implements DataStructureOperations<K, T> {
     private int capacity = 250;
     private Entry<K, T>[] table;
 
@@ -10,6 +10,7 @@ public class HashMap<K, T>  {
         table = new Entry[capacity];
     }
 
+    @Override
     public void add(K key, T value) {
         if (key == null) {
             return;
@@ -33,11 +34,17 @@ public class HashMap<K, T>  {
         }
     }
 
+    @Override
+    public void add(T value) {
+        throw new UnsupportedOperationException("Key is required for adding elements to the linked list.");
+    }
+
     private int getIndex(K key) {
         int hashCode = key.hashCode();
         return Math.abs(hashCode) % capacity;
     }
 
+    @Override
     public T get(K key){
         if (key == null) {
             return null;
@@ -55,6 +62,7 @@ public class HashMap<K, T>  {
         return null;
     }
 
+    @Override
     public void delete(K key){
         if (key == null) {
             return;
@@ -79,7 +87,8 @@ public class HashMap<K, T>  {
         }
     }
 
-    public Boolean contains(T value){
+    @Override
+    public boolean contains(K value){
         for (Entry<K, T> entry : table) {
             Entry<K, T> current = entry;
             while (current != null) {
@@ -92,6 +101,7 @@ public class HashMap<K, T>  {
         return false;
     }
 
+    @Override
     public int size() {
         int count = 0;
         for (Entry<K, T> entry : table) {
@@ -104,6 +114,7 @@ public class HashMap<K, T>  {
         return count;
     }
 
+    @Override
     public void set(K key, T value) {
         int index = getIndex(key);
         Entry<K, T> entry = table[index];
@@ -141,8 +152,8 @@ public class HashMap<K, T>  {
         hashMap.delete(3);
 
         // Check if a value exists in the HashMap
-        System.out.println("Does the HashMap contain value 'Doom'? " + hashMap.contains("Doom"));
-        System.out.println("Does the HashMap contain value 'Soccer'? " + hashMap.contains("Soccer"));
+        System.out.println("Does the HashMap contain value 'Doom'? " + hashMap.contains(1));
+        System.out.println("Does the HashMap contain value 'Soccer'? " + hashMap.contains(2));
 
         // Get the size of the HashMap
         System.out.println("Size of the HashMap: " + hashMap.size());

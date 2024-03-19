@@ -2,11 +2,13 @@ package DataStructure;
 
 import DataStructure.Node.Node;
 
-public interface DataStructureOperations<T> {
+public interface DataStructureOperations<K, T> {
+    void add(K key, T value);
     void add(T value);
-    T get(int index);
-    void delete(T value);
-    Boolean contains(T value);
+    T get(K key);
+    void delete(K key);
+    boolean contains(K key);
     int size();
-    void set(int index, T value);
+    void set(K key, T value);
+
 }

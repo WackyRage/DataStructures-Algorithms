@@ -191,7 +191,7 @@ public class Application {
     public int linearSearch(String searchTerm){
         if(selectedDataStructure != DataStructures.None ){
             linearSearch = new LinearSearch(this, searchTerm);
-            return linearSearch.linearSearch();
+            return linearSearch.linearSearch(this);
         } else {
             return -1;
         }

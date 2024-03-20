@@ -1,16 +1,16 @@
-package Algorithms;
-
-import DataStructure.DataStructureOperations;
+import DataStructure.LinkedList;
 import Game.Game;
 
 import java.util.Objects;
 
 public class LinearSearch {
-    private DataStructureOperations<Game> Games;
+    private LinkedList<Game> Games;
     private String searchTerm;
 
-    public LinearSearch(DataStructureOperations<Game> Games, String searchTerm){
-        this.Games = Games;
+    public LinearSearch(Application application, String searchTerm){
+        if(application.getSelectedDataStructure() == Application.DataStructures.LinkedList){
+            this.Games = application.getLinkedListGame();
+        }
         this.searchTerm = searchTerm;
     }
 

@@ -1,5 +1,3 @@
-import DataStructure.DataStructureOperations;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
@@ -7,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import DataStructure.LinkedList;
 import Game.Game;
 
 public class GUI {
@@ -24,9 +24,9 @@ public class GUI {
 
     //create Buttons
     JButton buttonQuickSort = new JButton("Quicksort");
-    JButton buttonHeapSort = new JButton("Algorithms.HeapSort");
-    JButton buttonMergeSort = new JButton("Algorithms.MergeSort");
-    JButton buttonBubbleSort = new JButton("Algorithms.BubbleSort");
+    JButton buttonHeapSort = new JButton("HeapSort");
+    JButton buttonMergeSort = new JButton("MergeSort");
+    JButton buttonBubbleSort = new JButton("BubbleSort");
     JButton refreshData = new JButton("Refresh Data");
     JButton buttonLinkedList = new JButton("Use LinkedList Data Structure");
     JButton buttonHashMap = new JButton("Use HashMap Data Structure");
@@ -124,7 +124,7 @@ public class GUI {
                 model.addRow(new Object[]{game.getName(), game.getGenre(), game.getPEGI(), game.getPrice(), parseDateToString(game.getReleaseDate())});
             }
         } else if (application.getSelectedDataStructure() == Application.DataStructures.LinkedList){
-            DataStructureOperations<Game> Games = application.getLinkedListGame();
+            LinkedList Games = application.getLinkedListGame();
             model.setRowCount(0);
             for(int j = 0; j < Games.size(); j++){
                 model.addRow(new Object[]{
@@ -207,7 +207,7 @@ public class GUI {
                 application.bubbleSortData();
                 endTimer();
                 printData();
-                currentSortingAlgorithm = "Algorithms.BubbleSort";
+                currentSortingAlgorithm = "BubbleSort";
                 currentSortingAlgorithmLabel.setText("Currently Using: " + currentSortingAlgorithm);
             }
         });

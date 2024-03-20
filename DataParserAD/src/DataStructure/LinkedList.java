@@ -2,7 +2,7 @@ package DataStructure;
 
 import DataStructure.Node.Node;
 
-public class LinkedList<T>  implements DataStructureOperations<T> {
+public class LinkedList<T> {
     private Node<T> head;
 
     public void add(T value) {
@@ -21,7 +21,6 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
         last.setNext(newNode);
     }
 
-    @Override
     public void delete(T value) {
         Node<T> temp = head;
         Node<T> prev = null;
@@ -43,7 +42,6 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
         prev.setNext(temp.getNext());
     }
 
-    @Override
     public Boolean contains(T value) {
         Node<T> current = head;
         while (current != null) {
@@ -55,7 +53,6 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
         return false;
     }
 
-    @Override
     public T get(int index) {
         if (index < 0 || head == null) {
             return null;
@@ -74,7 +71,6 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
         return null;
     }
 
-    @Override
     public int size() {
         int count = 0;
         Node<T> current = head;
@@ -85,7 +81,6 @@ public class LinkedList<T>  implements DataStructureOperations<T> {
         return count;
     }
 
-    @Override
     public void set(int index, T value) {
         Node<T> current = head;
         int count = 0;

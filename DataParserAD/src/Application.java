@@ -1,5 +1,5 @@
-import Algorithms.*;
-import DataStructure.DataStructureOperations;
+import DataStructure.HashMap;
+import DataStructure.LinkedList;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -27,8 +27,8 @@ public class Application {
         BinaryTree;
     }
     private DataStructures selectedDataStructure = DataStructures.None;
-    private DataStructure.DataStructureOperations<Game> LinkedListGame = new DataStructure.LinkedList<>();
-    //private DataStructure.DataStructureOperations<Game> HashMapGame = new DataStructure.HashMap<>();
+    private LinkedList<Game> LinkedListGame = new LinkedList<>();
+    //private HashMap<Game> HashMapGame = new HashMap<>();
     //private DataStructure.DataStructureOperations<Game> BinaryTreeGame = new DataStructure.BinaryTree<>();
 
     private LinearSearch linearSearch;
@@ -116,13 +116,13 @@ public class Application {
         if (selectedDataStructure == DataStructures.None){
             System.out.print("No Data Structure Selected");
         } else if (selectedDataStructure == DataStructures.LinkedList){
-            QuickSort.quickSort(LinkedListGame, 0, (Games.size() - 1));
+            QuickSort.quickSort(this, 0, (Games.size() - 1));
             System.out.println("The games have been sorted using Quicksort!");
         } /*else if (selectedDataStructure == DataStructures.HashMap){
-            Algorithms.QuickSort.quickSort(HashMapGame, 0, (Games.size() - 1));
+            QuickSort.quickSort(HashMapGame, 0, (Games.size() - 1));
             System.out.println("The games have been sorted using Quicksort!");
         } else if (selectedDataStructure == DataStructures.BinaryTree){
-            Algorithms.QuickSort.quickSort(BinaryTreeGame, 0, (Games.size() - 1));
+            QuickSort.quickSort(BinaryTreeGame, 0, (Games.size() - 1));
             System.out.println("The games have been sorted using Quicksort!");
         }*/
     }
@@ -131,7 +131,7 @@ public class Application {
         if (selectedDataStructure == DataStructures.None){
             System.out.print("No Data Structure Selected");
         } else if (selectedDataStructure == DataStructures.LinkedList){
-            BubbleSort.bubbleSort(LinkedListGame);
+            BubbleSort.bubbleSort(this);
             System.out.println("The games have been sorted using Bubblesort!");
         }
     }
@@ -140,7 +140,7 @@ public class Application {
         if (selectedDataStructure == DataStructures.None){
             System.out.print("No Data Structure Selected");
         } else if (selectedDataStructure == DataStructures.LinkedList){
-            MergeSort.mergeSort(LinkedListGame, 0, (LinkedListGame.size() - 1));
+            MergeSort.mergeSort(this, 0, (LinkedListGame.size() - 1));
             System.out.println("The games have been sorted using Mergesort!");
         }
     }
@@ -149,7 +149,7 @@ public class Application {
         if (selectedDataStructure == DataStructures.None){
             System.out.print("No Data Structure Selected");
         } else if (selectedDataStructure == DataStructures.LinkedList){
-            HeapSort.heapSort(LinkedListGame);
+            HeapSort.heapSort(this);
             System.out.println("The games have been sorted using Heapsort!");
         }
     }
@@ -188,7 +188,7 @@ public class Application {
 
     public int linearSearch(String searchTerm){
         if(selectedDataStructure == DataStructures.LinkedList){
-            linearSearch = new LinearSearch(LinkedListGame, searchTerm);
+            linearSearch = new LinearSearch(this, searchTerm);
             return linearSearch.linearSearch();
         } else if (selectedDataStructure == DataStructures.HashMap){
             //bestaat nog niet
@@ -212,7 +212,7 @@ public class Application {
         }*/
     }
 
-    public DataStructureOperations<Game> getLinkedListGame() {
+    public LinkedList<Game> getLinkedListGame() {
         return LinkedListGame;
     }
 

@@ -124,7 +124,7 @@ public class GUI {
                 model.addRow(new Object[]{game.getName(), game.getGenre(), game.getPEGI(), game.getPrice(), parseDateToString(game.getReleaseDate())});
             }
         } else if (application.getSelectedDataStructure() == Application.DataStructures.LinkedList){
-            LinkedList Games = application.getLinkedListGame();
+            LinkedList<Game> Games = application.getLinkedListGame();
             model.setRowCount(0);
             for(int j = 0; j < Games.size(); j++){
                 model.addRow(new Object[]{

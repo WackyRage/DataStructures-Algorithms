@@ -118,39 +118,39 @@ public class HashMap<K, T>  {
         add(key, value);
     }
 
-    public static void main(String[] args) {
-        HashMap<Integer, String> hashMap = new HashMap<>();
-
-        // Add some entries
-        hashMap.add(1, "stardew");
-        hashMap.add(2, "volly");
-        hashMap.add(3, "Doom");
-
-        // Get and print the value for a specific key
-        System.out.println("Value for key 1: " + hashMap.get(1));
-        System.out.println("Value for key 2: " + hashMap.get(2));
-        System.out.println("Value for key 3: " + hashMap.get(3));
-
-        // Update an existing entry
-        hashMap.set(2, "Soccer");
-
-        // Get and print the updated value for the same key
-        System.out.println("Updated value for key 2: " + hashMap.get(2));
-
-        // Delete an entry
-        hashMap.delete(3);
-
-        // Check if a value exists in the HashMap
-        System.out.println("Does the HashMap contain value 'Doom'? " + hashMap.contains("Doom"));
-        System.out.println("Does the HashMap contain value 'Soccer'? " + hashMap.contains("Soccer"));
-
-        // Get the size of the HashMap
-        System.out.println("Size of the HashMap: " + hashMap.size());
-
-        for (int i = 1; i <= hashMap.size(); i++) {
-            System.out.println("Key: " + i + ", Value: " + hashMap.get(i));
-        }
-    }
+//    public static void main(String[] args) {
+//        HashMap<Integer, String> hashMap = new HashMap<>();
+//
+//        // Add some entries
+//        hashMap.add(1, "stardew");
+//        hashMap.add(2, "volly");
+//        hashMap.add(3, "Doom");
+//
+//        // Get and print the value for a specific key
+//        System.out.println("Value for key 1: " + hashMap.get(1));
+//        System.out.println("Value for key 2: " + hashMap.get(2));
+//        System.out.println("Value for key 3: " + hashMap.get(3));
+//
+//        // Update an existing entry
+//        hashMap.set(2, "Soccer");
+//
+//        // Get and print the updated value for the same key
+//        System.out.println("Updated value for key 2: " + hashMap.get(2));
+//
+//        // Delete an entry
+//        hashMap.delete(3);
+//
+//        // Check if a value exists in the HashMap
+//        System.out.println("Does the HashMap contain value 'Doom'? " + hashMap.contains("Doom"));
+//        System.out.println("Does the HashMap contain value 'Soccer'? " + hashMap.contains("Soccer"));
+//
+//        // Get the size of the HashMap
+//        System.out.println("Size of the HashMap: " + hashMap.size());
+//
+//        for (int i = 1; i <= hashMap.size(); i++) {
+//            System.out.println("Key: " + i + ", Value: " + hashMap.get(i));
+//        }
+//    }
 
 }
 

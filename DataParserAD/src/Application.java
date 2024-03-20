@@ -28,7 +28,7 @@ public class Application {
     }
     private DataStructures selectedDataStructure = DataStructures.None;
     private LinkedList<Game> LinkedListGame = new LinkedList<>();
-    //private HashMap<Game> HashMapGame = new HashMap<>();
+    private HashMap<Integer, Game> HashMapGame = new HashMap<>();
     //private DataStructure.DataStructureOperations<Game> BinaryTreeGame = new DataStructure.BinaryTree<>();
 
     private LinearSearch linearSearch;
@@ -118,10 +118,10 @@ public class Application {
         } else if (selectedDataStructure == DataStructures.LinkedList){
             QuickSort.quickSort(this, 0, (Games.size() - 1));
             System.out.println("The games have been sorted using Quicksort!");
-        } /*else if (selectedDataStructure == DataStructures.HashMap){
-            QuickSort.quickSort(HashMapGame, 0, (Games.size() - 1));
+        } else if (selectedDataStructure == DataStructures.HashMap){
+            QuickSort.quickSort(this, 0, (Games.size() - 1));
             System.out.println("The games have been sorted using Quicksort!");
-        } else if (selectedDataStructure == DataStructures.BinaryTree){
+        } /*else if (selectedDataStructure == DataStructures.BinaryTree){
             QuickSort.quickSort(BinaryTreeGame, 0, (Games.size() - 1));
             System.out.println("The games have been sorted using Quicksort!");
         }*/
@@ -170,13 +170,15 @@ public class Application {
         selectedDataStructure = DataStructures.LinkedList;
     }
 
-    /*public void useHashMap(){
-        HashMapGame = new DataStructure.LinkedList<>();
+    public void useHashMap(){
+        HashMapGame = new DataStructure.HashMap<>();
+        int i = 0;
         for(Game game: Games){
-            HashMapGame.add(game);
+            HashMapGame.add(i, game);
+            i++;
         }
         selectedDataStructure = DataStructures.HashMap;
-    }*/
+    }
 
     /*public void useBinaryTree(){
         BinaryTreeGame = new DataStructure.BinaryTree<>();
@@ -187,33 +189,35 @@ public class Application {
     }*/
 
     public int linearSearch(String searchTerm){
-        if(selectedDataStructure == DataStructures.LinkedList){
+        if(selectedDataStructure != DataStructures.None ){
             linearSearch = new LinearSearch(this, searchTerm);
             return linearSearch.linearSearch();
-        } else if (selectedDataStructure == DataStructures.HashMap){
-            //bestaat nog niet
-            return -1;
-        } else if (selectedDataStructure == DataStructures.BinaryTree){
-            //destaat ook nog niet
-            return -1;
         } else {
             return -1;
         }
+    }
+
+    public int binarySearch(String searchTerm){
+        return -1;
     }
 
     public void refreshListGames(){
         if(selectedDataStructure == DataStructures.LinkedList){
             useLinkedList();
         }
-        /*else if(selectedDataStructure == DataStructures.HashMap){
+        else if(selectedDataStructure == DataStructures.HashMap){
             useHashMap();
-        }else if(selectedDataStructure == DataStructures.BinaryTree){
+        }/*else if(selectedDataStructure == DataStructures.BinaryTree){
             useBinaryTree();
         }*/
     }
 
     public LinkedList<Game> getLinkedListGame() {
         return LinkedListGame;
+    }
+
+    public HashMap<Integer, Game> getHashMapGame(){
+        return HashMapGame;
     }
 
     public DataStructures getSelectedDataStructure() {

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import DataStructure.HashMap;
 import DataStructure.LinkedList;
 import Game.Game;
 
@@ -124,7 +125,18 @@ public class GUI {
                 model.addRow(new Object[]{game.getName(), game.getGenre(), game.getPEGI(), game.getPrice(), parseDateToString(game.getReleaseDate())});
             }
         } else if (application.getSelectedDataStructure() == Application.DataStructures.LinkedList){
-            LinkedList Games = application.getLinkedListGame();
+            LinkedList<Game> Games = application.getLinkedListGame();
+            model.setRowCount(0);
+            for(int j = 0; j < Games.size(); j++){
+                model.addRow(new Object[]{
+                        Games.get(j).getName(),
+                        Games.get(j).getGenre(),
+                        Games.get(j).getPEGI(),
+                        Games.get(j).getPrice(),
+                        parseDateToString(Games.get(j).getReleaseDate())});
+            }
+        } else if (application.getSelectedDataStructure() == Application.DataStructures.HashMap){
+            HashMap<Integer, Game> Games = application.getHashMapGame();
             model.setRowCount(0);
             for(int j = 0; j < Games.size(); j++){
                 model.addRow(new Object[]{
@@ -250,6 +262,7 @@ public class GUI {
         buttonHashMap.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                application.useHashMap();
                 currentDataStructure = "HashMap";
                 currentDataStructureLabel.setText("Currently Using: " + currentDataStructure);
             }
@@ -267,14 +280,28 @@ public class GUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(searchInput != null){
+                    initialiseTimer();
                     int searchResult = application.linearSearch(searchInput.getText());
-                    if(application.getSelectedDataStructure() == Application.DataStructures.LinkedList){
-                        alertLabel.setText("The selected item is at index: " + searchResult +
+                    alertLabel.setText("The selected item is at index: " + searchResult +
                                 ". Meaning its at location " + (searchResult+1) + "in the list!");
-                    }
-                    //add other datastrructures
+                    endTimer();
                 } else {
-                    //add notification
+                    alertLabel.setText("No text was entered!");
+                }
+            }
+        });
+
+        buttonBinarySearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(searchInput != null){
+                    initialiseTimer();
+                    int searchResult = application.binarySearch(searchInput.getText());
+                    alertLabel.setText("The selected item is at index: " + searchResult +
+                            ". Meaning its at location " + (searchResult+1) + "in the list!");
+                    endTimer();
+                } else {
+                    alertLabel.setText("No text was entered!");
                 }
             }
         });

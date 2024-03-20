@@ -21,6 +21,24 @@ public class BubbleSort {
                     }
                 }
             }
+        } else if(application.getSelectedDataStructure() == Application.DataStructures.HashMap) {
+            int size = application.getHashMapGame().size();
+
+            // Loop through all game elements
+            for (int i = 0; i < size - 1; i++) {
+                // Element compare loop
+                for (int j = 0; j < size - i - 1; j++) {
+                    Game currentGame = application.getHashMapGame().get(j);
+                    Game nextGame = application.getHashMapGame().get(j + 1);
+
+                    //compare elements
+                    if (currentGame.getName().compareTo(nextGame.getName()) > 0) {
+
+                        application.getHashMapGame().set(j, nextGame);
+                        application.getHashMapGame().set(j + 1, currentGame);
+                    }
+                }
+            }
         }
     }
 }

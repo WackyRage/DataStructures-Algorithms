@@ -11,11 +11,14 @@ import DataStructure.LinkedList;
 import Game.Game;
 
 public class GUI {
-    private Application application;
-    private SimpleDateFormat releaseDateFormat;
+    private final Application application;
+    private final SimpleDateFormat releaseDateFormat;
     private double printTimer;
     private String currentSortingAlgorithm = "No Sorting Algorithm Selected!";
     private String currentDataStructure = "No Data Structure Selected!";
+    private String linkedListLastSorted = "No Sorting Algorithm Selected!";
+    private String hashMapLastSorted = "No Sorting Algorithm Selected!";
+
 
     //create Pages
     JFrame mainPage = new JFrame();
@@ -188,6 +191,16 @@ public class GUI {
     }
 
     private void addOnClickButtons(){
+        refreshData.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                refreshData();
+                printData();
+                currentSortingAlgorithm = "No Sorting Algorithm Selected";
+                currentSortingAlgorithmLabel.setText("Currently Using: " + currentSortingAlgorithm);
+            }
+        });
+
         buttonQuickSort.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -198,16 +211,7 @@ public class GUI {
                 printData();
                 currentSortingAlgorithm = "Quicksort";
                 currentSortingAlgorithmLabel.setText("Currently Using: " + currentSortingAlgorithm);
-            }
-        });
-
-        refreshData.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                refreshData();
-                printData();
-                currentSortingAlgorithm = "No Sorting Algorithm Selected";
-                currentSortingAlgorithmLabel.setText("Currently Using: " + currentSortingAlgorithm);
+                setSort(currentSortingAlgorithm);
             }
         });
 
@@ -221,6 +225,7 @@ public class GUI {
                 printData();
                 currentSortingAlgorithm = "BubbleSort";
                 currentSortingAlgorithmLabel.setText("Currently Using: " + currentSortingAlgorithm);
+                setSort(currentSortingAlgorithm);
             }
         });
 
@@ -234,6 +239,7 @@ public class GUI {
                 printData();
                 currentSortingAlgorithm = "Mergesort";
                 currentSortingAlgorithmLabel.setText("Currently Using: " + currentSortingAlgorithm);
+                setSort(currentSortingAlgorithm);
             }
         });
 
@@ -247,6 +253,8 @@ public class GUI {
                 printData();
                 currentSortingAlgorithm = "Heapsort";
                 currentSortingAlgorithmLabel.setText("Currently Using: " + currentSortingAlgorithm);
+                setSort(currentSortingAlgorithm);
+
             }
         });
 
@@ -256,6 +264,8 @@ public class GUI {
                 application.useLinkedList();
                 currentDataStructure = "LinkedList";
                 currentDataStructureLabel.setText("Currently Using: " + currentDataStructure);
+                currentSortingAlgorithmLabel.setText("Currently Using: " + linkedListLastSorted);
+                printData();
             }
         });
 
@@ -265,6 +275,8 @@ public class GUI {
                 application.useHashMap();
                 currentDataStructure = "HashMap";
                 currentDataStructureLabel.setText("Currently Using: " + currentDataStructure);
+                currentSortingAlgorithmLabel.setText("Currently Using: " + hashMapLastSorted);
+                printData();
             }
         });
 
@@ -325,5 +337,13 @@ public class GUI {
         System.out.println("The action took " + (System.nanoTime() - startTimer +"ns"));
         printTimer = toDouble(duration/1000000000); //Set to seconds
         timerLabel.setText("The action took " + printTimer + "s"); // Display seconds to sort on frontend
+    }
+
+    public void setSort(String sortingType){
+        if (application.getSelectedDataStructure() == Application.DataStructures.LinkedList){
+            linkedListLastSorted = sortingType;
+        } else if (application.getSelectedDataStructure() == Application.DataStructures.HashMap){
+            hashMapLastSorted = sortingType;
+        }
     }
 }

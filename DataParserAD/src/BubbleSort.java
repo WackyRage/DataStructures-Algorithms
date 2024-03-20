@@ -3,7 +3,6 @@ import Game.Game;
 public class BubbleSort {
     public static void bubbleSort(Application application) {
         if(application.getSelectedDataStructure() == Application.DataStructures.LinkedList) {
-            System.out.println("ITS A LINKEDLIST");
             int size = application.getLinkedListGame().size();
 
             // Loop through all game elements
@@ -23,7 +22,6 @@ public class BubbleSort {
                 }
             }
         } else if(application.getSelectedDataStructure() == Application.DataStructures.HashMap) {
-            System.out.println("ITS A HASHMAP");
             int size = application.getHashMapGame().size();
 
             // Loop through all game elements

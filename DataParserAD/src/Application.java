@@ -115,22 +115,16 @@ public class Application {
     public void quickSortData(){
         if (selectedDataStructure == DataStructures.None){
             System.out.print("No Data Structure Selected");
-        } else if (selectedDataStructure == DataStructures.LinkedList){
+        } else {
             QuickSort.quickSort(this, 0, (Games.size() - 1));
             System.out.println("The games have been sorted using Quicksort!");
-        } else if (selectedDataStructure == DataStructures.HashMap){
-            QuickSort.quickSort(this, 0, (Games.size() - 1));
-            System.out.println("The games have been sorted using Quicksort!");
-        } /*else if (selectedDataStructure == DataStructures.BinaryTree){
-            QuickSort.quickSort(BinaryTreeGame, 0, (Games.size() - 1));
-            System.out.println("The games have been sorted using Quicksort!");
-        }*/
+        }
     }
 
     public void bubbleSortData(){
         if (selectedDataStructure == DataStructures.None){
             System.out.print("No Data Structure Selected");
-        } else if (selectedDataStructure == DataStructures.LinkedList){
+        } else {
             BubbleSort.bubbleSort(this);
             System.out.println("The games have been sorted using Bubblesort!");
         }
@@ -142,13 +136,16 @@ public class Application {
         } else if (selectedDataStructure == DataStructures.LinkedList){
             MergeSort.mergeSort(this, 0, (LinkedListGame.size() - 1));
             System.out.println("The games have been sorted using Mergesort!");
+        } else if (selectedDataStructure == DataStructures.HashMap){
+            MergeSort.mergeSort(this, 0, (HashMapGame.size() - 1));
+            System.out.println("The games have been sorted using Mergesort!");
         }
     }
 
     public void heapSortData() {
         if (selectedDataStructure == DataStructures.None){
             System.out.print("No Data Structure Selected");
-        } else if (selectedDataStructure == DataStructures.LinkedList){
+        } else {
             HeapSort.heapSort(this);
             System.out.println("The games have been sorted using Heapsort!");
         }

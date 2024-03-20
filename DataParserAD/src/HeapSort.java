@@ -4,6 +4,8 @@ import Game.Game;
 public class HeapSort {
     public static void heapSort(Application application) {
         if(application.getSelectedDataStructure() == Application.DataStructures.LinkedList) {
+
+            System.out.println("LinkedList Timwe");
             int n = application.getLinkedListGame().size();
 
             // Build max heap
@@ -21,6 +23,8 @@ public class HeapSort {
                 heap(application, i, 0);
             }
         } else if(application.getSelectedDataStructure() == Application.DataStructures.HashMap) {
+
+            System.out.println("Hashmap Timwe");
             int n = application.getHashMapGame().size();
 
             // Build max heap
@@ -45,20 +49,36 @@ public class HeapSort {
         int largest = i;
         int l = 2 * i + 1;
         int r = 2 * i + 2;
+        if (application.getSelectedDataStructure() == Application.DataStructures.LinkedList) {
+            if (l < n && application.getLinkedListGame().get(l).getName().compareTo(application.getLinkedListGame().get(largest).getName()) > 0)
+                largest = l;
 
-        if (l < n && application.getLinkedListGame().get(l).getName().compareTo(application.getLinkedListGame().get(largest).getName()) > 0)
-            largest = l;
+            if (r < n && application.getLinkedListGame().get(r).getName().compareTo(application.getLinkedListGame().get(largest).getName()) > 0)
+                largest = r;
 
-        if (r < n && application.getLinkedListGame().get(r).getName().compareTo(application.getLinkedListGame().get(largest).getName()) > 0)
-            largest = r;
+            // Swap and continue heapifying if root is not largest
+            if (largest != i) {
+                Game swap = application.getLinkedListGame().get(i);
+                application.getLinkedListGame().set(i, application.getLinkedListGame().get(largest));
+                application.getLinkedListGame().set(largest, swap);
 
-        // Swap and continue heapifying if root is not largest
-        if (largest != i) {
-            Game swap = application.getLinkedListGame().get(i);
-            application.getLinkedListGame().set(i, application.getLinkedListGame().get(largest));
-            application.getLinkedListGame().set(largest, swap);
+                heap(application, n, largest);
+            }
+        } else if (application.getSelectedDataStructure() == Application.DataStructures.HashMap){
+            if (l < n && application.getHashMapGame().get(l).getName().compareTo(application.getHashMapGame().get(largest).getName()) > 0)
+                largest = l;
 
-            heap(application, n, largest);
+            if (r < n && application.getHashMapGame().get(r).getName().compareTo(application.getHashMapGame().get(largest).getName()) > 0)
+                largest = r;
+
+            // Swap and continue heapifying if root is not largest
+            if (largest != i) {
+                Game swap = application.getHashMapGame().get(i);
+                application.getHashMapGame().set(i, application.getHashMapGame().get(largest));
+                application.getHashMapGame().set(largest, swap);
+
+                heap(application, n, largest);
+            }
         }
     }
 }

@@ -188,7 +188,7 @@ public class Application {
 
     public int linearSearch(String searchTerm){
         if(selectedDataStructure != DataStructures.None ){
-            linearSearch = new LinearSearch(this, searchTerm);
+            linearSearch = new LinearSearch(searchTerm);
             return linearSearch.linearSearch(this);
         } else {
             return -1;
@@ -197,7 +197,7 @@ public class Application {
 
     public int binarySearch(String searchTerm){
         if(selectedDataStructure != DataStructures.None ){
-            binarySearch = new BinarySearch(this, searchTerm);
+            binarySearch = new BinarySearch(searchTerm);
             return binarySearch.binarySearch(this);
         } else {
             return -1;

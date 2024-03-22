@@ -5,9 +5,9 @@ import Game.Game;
 import java.util.Objects;
 
 public class LinearSearch {
-    private String searchTerm;
+    private final String searchTerm;
 
-    public LinearSearch(Application application, String searchTerm){
+    public LinearSearch(String searchTerm){
         this.searchTerm = searchTerm;
     }
 

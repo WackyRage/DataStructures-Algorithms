@@ -294,9 +294,14 @@ public class GUI {
                 if(searchInput != null){
                     initialiseTimer();
                     int searchResult = application.linearSearch(searchInput.getText());
-                    alertLabel.setText("The selected item is at index: " + searchResult +
-                                ". Meaning its at location " + (searchResult+1) + "in the list!");
                     endTimer();
+                    if (searchResult != -1) {
+                        alertLabel.setText("The selected item is at index: " + searchResult +
+                                ". Meaning its at location " + (searchResult+1) + "in the list!");
+                    } else {
+                        alertLabel.setText("Please select a Data Structure " +
+                                "to search for an item in the list with linear search.");
+                    }
                 } else {
                     alertLabel.setText("No text was entered!");
                 }
@@ -309,9 +314,14 @@ public class GUI {
                 if(searchInput != null){
                     initialiseTimer();
                     int searchResult = application.binarySearch(searchInput.getText());
-                    alertLabel.setText("The selected item is at index: " + searchResult +
-                            ". Meaning its at location " + (searchResult+1) + "in the list!");
                     endTimer();
+                    if (searchResult != -1) {
+                        alertLabel.setText("The selected item is at index: " + searchResult +
+                                ". Meaning its at location " + (searchResult + 1) + "in the list!");
+                    } else {
+                        alertLabel.setText("Please select a Data Structure " +
+                                "and a Sorting Algorithm to search for an item in the list with binary search.");
+                    }
                 } else {
                     alertLabel.setText("No text was entered!");
                 }

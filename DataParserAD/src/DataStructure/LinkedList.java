@@ -22,6 +22,10 @@ public class LinkedList<T> {
     }
 
     public void delete(T value) {
+        if (head == null) {
+            throw new RuntimeException("Cannot delete from an empty list.");
+        }
+
         Node<T> temp = head;
         Node<T> prev = null;
 
@@ -36,7 +40,7 @@ public class LinkedList<T> {
         }
 
         if (temp == null) {
-            return;
+            throw new IllegalArgumentException("Value does not exist in the list.");
         }
 
         prev.setNext(temp.getNext());
@@ -55,7 +59,7 @@ public class LinkedList<T> {
 
     public T get(int index) {
         if (index < 0 || head == null) {
-            return null;
+            throw new IndexOutOfBoundsException("Index cannot be negative.");
         }
 
         Node<T> current = head;
@@ -68,7 +72,7 @@ public class LinkedList<T> {
             current = current.getNext();
             count++;
         }
-        return null;
+        throw new IndexOutOfBoundsException("Index out of bounds: " + index);
     }
 
     public int size() {
@@ -82,6 +86,10 @@ public class LinkedList<T> {
     }
 
     public void set(int index, T value) {
+        if (index < 0) {
+            throw new IndexOutOfBoundsException("Index cannot be negative.");
+        }
+
         Node<T> current = head;
         int count = 0;
         while (current != null && count < index) {
@@ -91,7 +99,7 @@ public class LinkedList<T> {
         if (current != null) {
             current.setValue(value);
         } else {
-            System.out.println("Invalid index");
+            throw new IndexOutOfBoundsException("Index out of bounds: " + index);
         }
     }
 

@@ -11,15 +11,12 @@ public class ArrayList<T> {
         elements = new Object[DEFAULT_CAPACITY];
     }
 
-    public void add(int index, T value) {
-        if (index > size || index < 0) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size " + index);
+    public void add(T value) {
+        if (size >= elements.length) {
+            capacity();
         }
-        capacity();
-        for (int i = size - 1; i >= index; i--) {
-            elements[i + 1] = elements[i];
-        }
-        elements[index] = value;
+
+        elements[size] = value;
         this.size++;
     }
 
@@ -70,9 +67,9 @@ public class ArrayList<T> {
         ArrayList<String> list = new ArrayList<>();
 
         // Add elements to the list
-        list.add(0, "Bill");
-        list.add(1, "Will");
-        list.add(2, "David");
+        list.add("Bill");
+        list.add("Will");
+        list.add("David");
 
         // Print the elements in the list
         System.out.println("Elements in the list:");

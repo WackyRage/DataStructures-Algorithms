@@ -33,10 +33,6 @@ public class Application {
 
     public Application(){
         xmlToArrayList("src/Games.xml");
-        for (Game objGame : Games)
-        {
-            System.out.println(objGame.getName() + "\n" + objGame.getGenre() + "\n" + objGame.getPEGI() + "\n" + objGame.getPrice() + "\n" + objGame.getReleaseDate() + "\n");
-        }
     }
 
     private String parseDateToString(Date date)

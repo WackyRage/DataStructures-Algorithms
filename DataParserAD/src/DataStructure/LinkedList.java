@@ -121,33 +121,33 @@ public class LinkedList<T> {
         }
         System.out.println(); // Print a newline after printing the linked list
 
-//        // Search for a value by index
-//        int index = 1;
-//        String nodeAtIndex = linkedList.get(index);
-//        if (nodeAtIndex != null) {
-//            System.out.println("Node at index " + index + " contains value: " + nodeAtIndex);
-//        } else {
-//            System.out.println("Node at index " + index + " not found.");
-//        }
-//
-//        // Print the linked list using a loop
-//        System.out.println("Linked list contents using loop:");
-//        for (int i = 0; i < linkedList.size(); i++) {
-//            String node = linkedList.get(i);
-//            System.out.print(node + " ");
-//        }
-//        System.out.println(); // Print a newline after printing the linked list
-//
-//        // Print the size of the linked list
-//        System.out.println("Size of the linked list: " + linkedList.size());
-//
-//        // Search for a value
-//        String searchValue = "Banana";
-//        if (linkedList.contains(searchValue)) {
-//            System.out.println("Value " + searchValue + " found in the list.");
-//        } else {
-//            System.out.println("Value " + searchValue + " not found in the list.");
-//        }
+        // Search for a value by index
+        int index = 1;
+        String nodeAtIndex = linkedList.get(index);
+        if (nodeAtIndex != null) {
+            System.out.println("Node at index " + index + " contains value: " + nodeAtIndex);
+        } else {
+            System.out.println("Node at index " + index + " not found.");
+        }
+
+        // Print the linked list using a loop
+        System.out.println("Linked list contents using loop:");
+        for (int i = 0; i < linkedList.size(); i++) {
+            String node = linkedList.get(i);
+            System.out.print(node + " ");
+        }
+        System.out.println(); // Print a newline after printing the linked list
+
+        // Print the size of the linked list
+        System.out.println("Size of the linked list: " + linkedList.size());
+
+        // Search for a value
+        String searchValue = "Banana";
+        if (linkedList.contains(searchValue)) {
+            System.out.println("Value " + searchValue + " found in the list.");
+        } else {
+            System.out.println("Value " + searchValue + " not found in the list.");
+        }
 
         // Delete a value
         String deleteValue = "Apple";

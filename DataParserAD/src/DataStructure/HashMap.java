@@ -2,6 +2,7 @@ package DataStructure;
 
 import DataStructure.Node.Entry;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class HashMap<K, T>  {
@@ -125,6 +126,12 @@ public class HashMap<K, T>  {
         hashMap.add(1, "stardew");
         hashMap.add(2, "volly");
         hashMap.add(3, "Doom");
+        hashMap.add(4, "stardew");
+        hashMap.add(5, "volly");
+        hashMap.add(6, "Doom");
+        hashMap.add(7, "stardew");
+        hashMap.add(8, "volly");
+        hashMap.add(9, "Doom");
 
         // Get and print the value for a specific key
         System.out.println("Value for key 1: " + hashMap.get(1));
@@ -147,8 +154,12 @@ public class HashMap<K, T>  {
         // Get the size of the HashMap
         System.out.println("Size of the HashMap: " + hashMap.size());
 
-        for (int i = 1; i <= hashMap.size(); i++) {
-            System.out.println("Key: " + i + ", Value: " + hashMap.get(i));
+        for (int i = 0; i < hashMap.table.length; i++) {
+            Entry<Integer, String> entry = hashMap.table[i];
+            while (entry != null) {
+                System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+                entry = entry.getNext();
+            }
         }
     }
 

@@ -27,7 +27,7 @@ public class Entry<K, T> {
         this.value = value;
     }
 
-    public Entry getNext() {
+    public Entry<K, T> getNext() {
         return next;
     }
 

@@ -32,6 +32,7 @@ public class Application {
     //private DataStructure.DataStructureOperations<Game> BinaryTreeGame = new DataStructure.BinaryTree<>();
 
     private LinearSearch linearSearch;
+    private BinarySearch binarySearch;
 
     public Application(){
         xmlToArrayList("src/Games.xml");
@@ -195,7 +196,12 @@ public class Application {
     }
 
     public int binarySearch(String searchTerm){
-        return -1;
+        if(selectedDataStructure != DataStructures.None ){
+            binarySearch = new BinarySearch(this, searchTerm);
+            return binarySearch.binarySearch(this);
+        } else {
+            return -1;
+        }
     }
 
     public void refreshListGames(){

@@ -18,6 +18,7 @@ public class GUI {
     private String currentDataStructure = "No Data Structure Selected!";
     private String linkedListLastSorted = "No Sorting Algorithm Selected!";
     private String hashMapLastSorted = "No Sorting Algorithm Selected!";
+    private String arrayListLastSorted = "No Sorting Algorithm Selected!";
 
 
     //create Pages
@@ -34,7 +35,7 @@ public class GUI {
     JButton refreshData = new JButton("Refresh Data");
     JButton buttonLinkedList = new JButton("Use LinkedList Data Structure");
     JButton buttonHashMap = new JButton("Use HashMap Data Structure");
-    JButton buttonBinaryTree = new JButton("Use Binary Tree Data Structure");
+    JButton buttonArrayList = new JButton("Use ArrayList Data Structure");
     JButton buttonLinearSearch = new JButton("Search with Linear Search");
     JButton buttonBinarySearch = new JButton("Search with Binary Search");
 
@@ -108,8 +109,8 @@ public class GUI {
         mainPanel.add(buttonLinkedList);
         buttonHashMap.setBounds(650, 225, 220, 50);
         mainPanel.add(buttonHashMap);
-        buttonBinaryTree.setBounds(650, 325, 220, 50);
-        mainPanel.add(buttonBinaryTree);
+        buttonArrayList.setBounds(650, 325, 220, 50);
+        mainPanel.add(buttonArrayList);
         buttonLinearSearch.setBounds(950, 225, 200, 50);
         mainPanel.add(buttonLinearSearch);
         buttonBinarySearch.setBounds(950, 325, 200, 50);
@@ -140,6 +141,17 @@ public class GUI {
             }
         } else if (application.getSelectedDataStructure() == Application.DataStructures.HashMap){
             HashMap<Integer, Game> Games = application.getHashMapGame();
+            model.setRowCount(0);
+            for(int j = 0; j < Games.size(); j++){
+                model.addRow(new Object[]{
+                        Games.get(j).getName(),
+                        Games.get(j).getGenre(),
+                        Games.get(j).getPEGI(),
+                        Games.get(j).getPrice(),
+                        parseDateToString(Games.get(j).getReleaseDate())});
+            }
+        } else if (application.getSelectedDataStructure() == Application.DataStructures.ArrayList){
+            DataStructure.ArrayList<Game> Games = application.getArrayListGame();
             model.setRowCount(0);
             for(int j = 0; j < Games.size(); j++){
                 model.addRow(new Object[]{
@@ -280,11 +292,14 @@ public class GUI {
             }
         });
 
-        buttonBinaryTree.addActionListener(new ActionListener() {
+        buttonArrayList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                currentDataStructure = "BinaryTree";
+                application.useArrayList();
+                currentDataStructure = "ArrayList";
                 currentDataStructureLabel.setText("Currently Using: " + currentDataStructure);
+                currentSortingAlgorithmLabel.setText("Currently Using: " + arrayListLastSorted);
+                printData();
             }
         });
 
@@ -354,6 +369,8 @@ public class GUI {
             linkedListLastSorted = sortingType;
         } else if (application.getSelectedDataStructure() == Application.DataStructures.HashMap){
             hashMapLastSorted = sortingType;
+        } else if (application.getSelectedDataStructure() == Application.DataStructures.ArrayList){
+            arrayListLastSorted = sortingType;
         }
     }
 }

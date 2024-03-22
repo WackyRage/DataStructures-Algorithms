@@ -1,3 +1,4 @@
+import DataStructure.ArrayList;
 import DataStructure.HashMap;
 import DataStructure.LinkedList;
 import Game.Game;
@@ -43,6 +44,35 @@ public class QuickSort {
             int i = (low - 1);
 
             for (int j = low; j < high; j++){
+                Game selectedGame = Games.get(j);
+
+                if (selectedGame.getName().compareTo(pivot.getName()) <= 0) {
+                    // If smaller element than pivot is found,
+                    // swap it with greater element
+                    i++;
+
+                    // Swap element i with j
+                    Game temp = Games.get(i);
+                    Games.set(i, Games.get(j));
+                    Games.set(j, temp);
+                }
+            }
+
+            Game temp = Games.get(i + 1);
+            Games.set((i + 1), Games.get(high));
+            Games.set(high, temp);
+
+            return i + 1;
+        } else if(application.getSelectedDataStructure() == Application.DataStructures.ArrayList) {
+            ArrayList<Game> Games = application.getArrayListGame();
+
+            //create and set pivot
+            Game pivot = Games.get(high);
+
+            //pointer for greater element
+            int i = (low - 1);
+
+            for (int j = low; j < high; j++) {
                 Game selectedGame = Games.get(j);
 
                 if (selectedGame.getName().compareTo(pivot.getName()) <= 0) {

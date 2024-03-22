@@ -1,3 +1,4 @@
+import DataStructure.ArrayList;
 import DataStructure.HashMap;
 import DataStructure.LinkedList;
 import Game.Game;
@@ -28,6 +29,20 @@ public class LinearSearch {
             return -1;
         } else if (application.getSelectedDataStructure() == Application.DataStructures.HashMap) {
             HashMap<Integer, Game> Games = application.getHashMapGame();
+            int n = Games.size();
+            System.out.println(Games.size());
+            //move through array sequentially
+            for (int i = 0; i < n; i++) {
+                if (Objects.equals(Games.get(i).getName(), searchTerm)) {
+                    System.out.println("we found it!");
+                    return i;
+                }
+                System.out.println(Games.get(i).getName());
+                System.out.println(searchTerm);
+            }
+            return -1;
+        } else if (application.getSelectedDataStructure() == Application.DataStructures.ArrayList) {
+            ArrayList<Game> Games = application.getArrayListGame();
             int n = Games.size();
             System.out.println(Games.size());
             //move through array sequentially

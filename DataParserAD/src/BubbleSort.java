@@ -1,3 +1,4 @@
+import DataStructure.ArrayList;
 import Game.Game;
 
 public class BubbleSort {
@@ -36,6 +37,24 @@ public class BubbleSort {
 
                         application.getHashMapGame().set(j, nextGame);
                         application.getHashMapGame().set(j + 1, currentGame);
+                    }
+                }
+            }
+        } else if(application.getSelectedDataStructure() == Application.DataStructures.ArrayList) {
+            int size = application.getArrayListGame().size();
+
+            // Loop through all game elements
+            for (int i = 0; i < size - 1; i++) {
+                // Element compare loop
+                for (int j = 0; j < size - i - 1; j++) {
+                    Game currentGame = application.getArrayListGame().get(j);
+                    Game nextGame = application.getArrayListGame().get(j + 1);
+
+                    //compare elements
+                    if (currentGame.getName().compareTo(nextGame.getName()) > 0) {
+
+                        application.getArrayListGame().set(j, nextGame);
+                        application.getArrayListGame().set(j + 1, currentGame);
                     }
                 }
             }

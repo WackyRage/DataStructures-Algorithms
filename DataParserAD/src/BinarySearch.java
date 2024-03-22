@@ -1,3 +1,4 @@
+import DataStructure.ArrayList;
 import DataStructure.HashMap;
 import DataStructure.LinkedList;
 import Game.Game;
@@ -29,6 +30,21 @@ public class BinarySearch {
             return -1;
         } else if (application.getSelectedDataStructure() == Application.DataStructures.HashMap){
             HashMap<Integer, Game> Games = application.getHashMapGame();
+            int low = 0;
+            int high = Games.size() - 1;
+
+            while (low <= high) {
+                int mid = low + (high - low) / 2;
+                if (Objects.equals(Games.get(mid).getName(), searchTerm)) {
+                    return mid;
+                } else if (Games.get(mid).getName().compareTo(searchTerm) < 0) {
+                    low = mid + 1;
+                } else {
+                    high = mid - 1;
+                }
+            }
+        }else if (application.getSelectedDataStructure() == Application.DataStructures.ArrayList){
+            ArrayList<Game> Games = application.getArrayListGame();
             int low = 0;
             int high = Games.size() - 1;
 

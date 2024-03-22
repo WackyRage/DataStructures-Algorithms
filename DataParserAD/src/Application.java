@@ -18,21 +18,18 @@ import java.util.Date;
 import Game.Game;
 
 public class Application {
-    private SimpleDateFormat releaseDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    private ArrayList<Game> Games = new ArrayList<>();
+    private final SimpleDateFormat releaseDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private final ArrayList<Game> Games = new ArrayList<>();
     enum DataStructures{
         None,
         LinkedList,
         HashMap,
-        BinaryTree;
+        ArrayList;
     }
     private DataStructures selectedDataStructure = DataStructures.None;
     private LinkedList<Game> LinkedListGame = new LinkedList<>();
     private HashMap<Integer, Game> HashMapGame = new HashMap<>();
-    //private DataStructure.DataStructureOperations<Game> BinaryTreeGame = new DataStructure.BinaryTree<>();
-
-    private LinearSearch linearSearch;
-    private BinarySearch binarySearch;
+    private DataStructure.ArrayList<Game> ArrayListGame = new DataStructure.ArrayList<>();
 
     public Application(){
         xmlToArrayList("src/Games.xml");
@@ -140,6 +137,9 @@ public class Application {
         } else if (selectedDataStructure == DataStructures.HashMap){
             MergeSort.mergeSort(this, 0, (HashMapGame.size() - 1));
             System.out.println("The games have been sorted using Mergesort!");
+        } else if (selectedDataStructure == DataStructures.ArrayList){
+            MergeSort.mergeSort(this, 0, (ArrayListGame.size() - 1));
+            System.out.println("The games have been sorted using Mergesort!");
         }
     }
 
@@ -178,17 +178,17 @@ public class Application {
         selectedDataStructure = DataStructures.HashMap;
     }
 
-    /*public void useBinaryTree(){
-        BinaryTreeGame = new DataStructure.BinaryTree<>();
+    public void useArrayList(){
+        ArrayListGame = new DataStructure.ArrayList<>();
         for(Game game: Games){
-            BinaryTreeGame.add(game);
+            ArrayListGame.add(game);
         }
-        selectedDataStructure = DataStructures.BinaryTree;
-    }*/
+        selectedDataStructure = DataStructures.ArrayList;
+    }
 
     public int linearSearch(String searchTerm){
         if(selectedDataStructure != DataStructures.None ){
-            linearSearch = new LinearSearch(searchTerm);
+            LinearSearch linearSearch = new LinearSearch(searchTerm);
             return linearSearch.linearSearch(this);
         } else {
             return -1;
@@ -197,7 +197,7 @@ public class Application {
 
     public int binarySearch(String searchTerm){
         if(selectedDataStructure != DataStructures.None ){
-            binarySearch = new BinarySearch(searchTerm);
+            BinarySearch binarySearch = new BinarySearch(searchTerm);
             return binarySearch.binarySearch(this);
         } else {
             return -1;
@@ -210,9 +210,9 @@ public class Application {
         }
         else if(selectedDataStructure == DataStructures.HashMap){
             useHashMap();
-        }/*else if(selectedDataStructure == DataStructures.BinaryTree){
-            useBinaryTree();
-        }*/
+        }else if(selectedDataStructure == DataStructures.ArrayList){
+            useArrayList();
+        }
     }
 
     public LinkedList<Game> getLinkedListGame() {
@@ -221,6 +221,10 @@ public class Application {
 
     public HashMap<Integer, Game> getHashMapGame(){
         return HashMapGame;
+    }
+
+    public DataStructure.ArrayList<Game> getArrayListGame(){
+        return ArrayListGame;
     }
 
     public DataStructures getSelectedDataStructure() {

@@ -61,45 +61,4 @@ public class ArrayList<T> {
         int newSize = elements.length * 2;
         elements = Arrays.copyOf(elements, newSize);
     }
-
-    public static void main(String[] args) {
-        // Create an instance of ArrayList
-        ArrayList<String> list = new ArrayList<>();
-
-        // Add elements to the list
-        list.add("Bill");
-        list.add("Will");
-        list.add("David");
-
-        // Print the elements in the list
-        System.out.println("Elements in the list:");
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i));
-        }
-
-        // Check if the list contains a value
-        String valueToCheck = "David";
-        System.out.println("Does the list contain " + valueToCheck + "? " + list.contains(valueToCheck));
-
-        // Delete an element from the list
-        int indexToDelete = 1;
-        list.delete(indexToDelete);
-
-        // Print the elements in the list after deletion
-        System.out.println("Elements in the list after deletion:");
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i));
-        }
-
-        // Set a new value at a specific index
-        int indexToSet = 0;
-        String newValue = "Kevin";
-        list.set(indexToSet, newValue);
-
-        // Print the elements in the list after setting a new value
-        System.out.println("Elements in the list after setting a new value:");
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i));
-        }
-    }
 }

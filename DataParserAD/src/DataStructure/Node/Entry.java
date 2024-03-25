@@ -1,5 +1,6 @@
 package DataStructure.Node;
 
+// Entry is object class representing a entry into hashmap table
 public class Entry<K, T> {
     private K key;
     private T value;

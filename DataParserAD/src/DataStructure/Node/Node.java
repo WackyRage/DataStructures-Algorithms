@@ -1,5 +1,6 @@
 package DataStructure.Node;
 
+// Entry is object class representing a node into LinkedList table
 public class Node<T> {
     private T value;
     private Node<T> next;
